@@ -1,0 +1,9 @@
+.idea
+*.pyc
+*~
+node_modules
+yarn.lock
+static/dist/
+static/dist_dev/
+fabfile.py
+sendtank/settings/env.py
