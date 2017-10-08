@@ -49,5 +49,6 @@ DEBUG_TOOLBAR_PANELS = [
 
 CSRF_COOKIE_SECURE = False
 SESSION_COOKIE_SECURE = False
+AUTH_PASSWORD_VALIDATORS = []
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
