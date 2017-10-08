@@ -1,0 +1,20 @@
+{
+  "name": "SendTank",
+  "version": "0.0.1",
+  "description": "Better way to keep your customers in loop",
+  "main": "src/main.js",
+  "repository": "https://github.com/awecode/sendtank",
+  "author": "Dipesh Acharya",
+  "license": "MIT",
+  "devDependencies": {
+    "css-loader": "^0.28.7",
+    "extract-text-webpack-plugin": "^3.0.1",
+    "node-sass": "^4.5.3",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.19.0",
+    "webpack": "^3.6.0"
+  },
+  "dependencies": {
+    "vue": "^2.4.4"
+  }
+}
