@@ -23,7 +23,7 @@ let commonsPlugin = new webpack.optimize.CommonsChunkPlugin({name: 'common', fil
 module.exports = {
   entry: {
     // landing: "./src/landing.js",
-    app: "./src/main.js",
+    main: "./src/main.js",
     // dashboard: "./src/dashboard.js",
   },
   output: output,
