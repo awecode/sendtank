@@ -30,6 +30,15 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.vue$/,
+        loader: 'vue-loader',
+        options: {
+          loaders: {
+            'scss': 'vue-style-loader!css-loader!sass-loader',
+          }
+        }
+      },
+      {
         test: /\.s?css$/,
         use: ExtractTextPlugin.extract({
           fallback: "style-loader",
@@ -39,6 +48,11 @@ module.exports = {
       {test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&mimetype=application/font-woff"},
       {test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader"}
     ]
+  },
+    resolve: {
+    alias: {
+      'vue$': 'vue/dist/vue.common.js'
+    }
   },
   plugins: [
     commonsPlugin,
