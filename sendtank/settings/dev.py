@@ -8,7 +8,8 @@ DEBUG = True
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.0.143']
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS += ('dist', os.path.join(BASE_DIR, 'static', 'dist_dev', )),
+
+STATICFILES_DIRS = [('dist', os.path.join(BASE_DIR, 'static', 'dist_dev', ))] + STATICFILES_DIRS
 
 DATABASES = {
     'default': {
@@ -21,8 +22,7 @@ DATABASES = {
     }
 }
 
-INSTALLED_APPS += (
-    # 'debug_toolbar',
+INSTALLED_APPS += (  # 'debug_toolbar',
     'django_extensions',
 )
 
