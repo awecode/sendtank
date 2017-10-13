@@ -1,11 +1,9 @@
 <template>
-    <div>
-        Hi there
-    </div>
+    <nav-bar></nav-bar>
 </template>
 
 <script>
-    import NavBar from './components/Nav.vue'
+    import NavBar from './components/NavBar.vue'
     export default{
       name: 'app',
       components: {NavBar},
