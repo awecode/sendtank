@@ -1,0 +1,23 @@
+$primary: #00aecc !default;
+$enable-rounded: false;
+//$body-bg: $primary;
+//$table-border-color: rgba(lighten($primary, 25), 0.5);
+$link-color: $primary;
+$pagination-active-bg: $primary;
+$pagination-active-border-color: $primary;
+$pagination-color: $primary;
+
+
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+$theme-colors:(
+    primary: $primary,
+   secondary: $gray-600,
+   success: $green,
+   info: $cyan,
+   warning: $yellow,
+   danger: $red,
+   light: $gray-100,
+   dark: $gray-800
+);
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
