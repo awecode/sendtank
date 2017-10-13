@@ -27,8 +27,9 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+
 class User(AbstractBaseUser):
-    email = models.EmailField(blank=True, unique=True)
+    email = models.EmailField(unique=True)
     full_name = models.CharField(max_length=245)
     is_superuser = models.BooleanField(default=False)
     is_active = models.BooleanField(default=False)
@@ -44,6 +45,43 @@ class User(AbstractBaseUser):
     def get_short_name(self):
         return self.email
 
+    def has_module_perms(self, app_label):
+        return self.is_superuser
+
+    def has_perm(self, app_label):
+        return self.is_superuser
+
     @property
     def is_staff(self):
         return self.is_superuser
+
+    def __str__(self):
+        return self.full_name
+
+
+class Company(models.Model):
+    name = models.CharField(max_length=254)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = 'Companies'
+
+
+ROLES = (
+    ('Staff', 'Staff'),
+    ('Admin', 'Admin'),
+)
+
+
+class Role(models.Model):
+    user = models.ForeignKey(User, related_name='roles')
+    company = models.ForeignKey(Company, related_name='roles')
+    type = models.CharField(choices=ROLES, max_length=20, default='Staff')
+
+    def __str__(self):
+        return str(self.user) + ' as ' + self.type + ' at ' + str(self.company)
+
+    class Meta:
+        unique_together = ('user', 'company', 'type')
