@@ -76,8 +76,8 @@ ROLES = (
 
 
 class Role(models.Model):
-    user = models.ForeignKey(User, related_name='roles')
-    company = models.ForeignKey(Company, related_name='roles')
+    user = models.ForeignKey(User, related_name='roles', on_delete=models.CASCADE)
+    company = models.ForeignKey(Company, related_name='roles', on_delete=models.CASCADE)
     type = models.CharField(choices=ROLES, max_length=20, default='Staff')
 
     def __str__(self):

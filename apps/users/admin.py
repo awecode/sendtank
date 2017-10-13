@@ -4,7 +4,7 @@ from django.contrib.auth.admin import UserAdmin, UserChangeForm as DjangoUserCha
 from django import forms
 from django.core.urlresolvers import reverse
 
-from apps.users.models import User, Company, Role
+from .models import User, Company, Role
 
 
 def url_to_edit_object(obj):
@@ -96,6 +96,9 @@ class RoleAdmin(admin.ModelAdmin):
     list_display = ('company', 'user', 'type')
     search_fields = ('user__email', 'user__full_name', 'company__name', 'type')
     list_filter = ('type',)
+
+    def get_queryset(self, request):
+        return super().get_queryset(request).select_related('company', 'user')
 
 
 admin.site.register(Role, RoleAdmin)
