@@ -5,7 +5,7 @@
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" v-model="form.name" id="name" class="form-control" name="name"/>
-                <span class="error" v-if="form.errors.has('name')">{{ form.errors.get('name') }}</span>
+                <span class="text-danger" v-if="form.errors.has('name')">{{ form.errors.get('name') }}</span>
             </div>
             <button class="btn btn-success" :disabled="form.errors.any()">Create</button>
         </form>

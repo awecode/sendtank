@@ -54,11 +54,9 @@ class Form {
 
   data() {
     let data = {};
-
-    for (let property in this.fields) {
-      data[property] = this[property];
-    }
-
+    this.fields.forEach(field=>{
+      data[field] = this[field];
+    });
     return data;
   }
 
