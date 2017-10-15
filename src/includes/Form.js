@@ -73,6 +73,7 @@ class Form {
 
 
   post(url) {
+    console.log(url);
     return this.submit('post', url);
   }
 
@@ -120,3 +121,5 @@ class Form {
     this.errors.record(errors);
   }
 }
+
+export default Form

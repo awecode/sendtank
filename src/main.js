@@ -5,6 +5,8 @@ import './includes/bootstrap'
 import router from './routes'
 import axios from 'axios';
 
+axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+axios.defaults.xsrfCookieName = "csrftoken";
 window.axios = axios;
 
 Vue.use(VueRouter);
