@@ -5,6 +5,10 @@ from django.db import models
 class Channel(object):
     name = None
 
+    @staticmethod
+    def get(name):
+        return dict(CHANNELS).get(name)
+
     def __init(self):
         if not self.name:
             raise NotImplemented('Channel should have a name')
