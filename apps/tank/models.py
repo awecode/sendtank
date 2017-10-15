@@ -9,3 +9,11 @@ class List(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Campaign(models.Model):
+    name = models.CharField(max_length=255)
+    list = models.ForeignKey(Company, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
