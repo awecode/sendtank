@@ -15,17 +15,10 @@
 </template>
 
 <script>
+  import Collection from '../mixins/Collection'
+
   export default {
-    data() {
-      return {
-        loading: false,
-        post: null,
-        error: null,
-        data: []
-      }
-    },
-    created() {
-      axios.get('/api/v1/lists/').then(({data}) => this.data = data);
-    }
+    endpoint: 'lists/',
+    mixins: [Collection],
   }
 </script>
