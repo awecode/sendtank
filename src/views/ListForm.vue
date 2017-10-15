@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1>Create New List</h1>
-        <vue-form :fields="fields" action="/api/v1/lists/">
+        <vue-form :fields="fields" action="lists/">
             <template scope="form">
                 <input type="text" v-model="fields.name" id="name" class="form-control" name="name" required/>
                 <!--<field-error :error="form.errors.get('name')"></field-error>-->

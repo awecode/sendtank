@@ -6,9 +6,11 @@
                 </slot>
             </div>
 
-            <slot name="submit">
-                <button class="btn btn-success" :disabled="errors.any()">Create</button>
-            </slot>
+            <div class="form-group pt-2">
+                <slot name="submit">
+                    <button class="btn btn-success" :disabled="errors.any()">Create</button>
+                </slot>
+            </div>
         </form>
     </div>
 </template>
@@ -125,12 +127,12 @@
       }
     }
   }
-//  import Vue from 'vue'
-//
-//  const FieldError = Vue.component('field-error', {
-//    props: ['error'],
-//    template: ' <span class="text-danger" v-if="error">{{error}}</span>'
-//  });
-//  
-//  export FieldError;
+  //  import Vue from 'vue'
+  //
+  //  const FieldError = Vue.component('field-error', {
+  //    props: ['error'],
+  //    template: ' <span class="text-danger" v-if="error">{{error}}</span>'
+  //  });
+  //  
+  //  export FieldError;
 </script>
