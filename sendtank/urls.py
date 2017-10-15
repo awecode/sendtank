@@ -11,6 +11,7 @@ from apps.tank import api as tank_api
 router = DefaultRouter()
 
 router.register('lists', tank_api.ListViewSet)
+router.register('campaigns', tank_api.CampaignViewSet)
 
 urlpatterns = [
     url(r'^stadmin/', admin.site.urls),
