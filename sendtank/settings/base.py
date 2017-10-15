@@ -14,6 +14,7 @@ INSTALLED_APPS = [
 
     'apps.users',
     'apps.tank',
+    'apps.send',
 ]
 
 MIDDLEWARE = [
