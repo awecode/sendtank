@@ -13,7 +13,11 @@ class List(models.Model):
 
 class Campaign(models.Model):
     name = models.CharField(max_length=255)
-    list = models.ForeignKey(Company, on_delete=models.CASCADE)
+    list = models.ForeignKey(List, on_delete=models.CASCADE)
+
+    @property
+    def company(self):
+        return self.list.company
 
     def __str__(self):
         return self.name
