@@ -14,6 +14,6 @@ class HousedSMS(Channel):
     name = 'HousedSMS'
 
 
-channels = (
+CHANNELS = (
     ('HousedSMS', HousedSMS),
 )

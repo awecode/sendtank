@@ -1,5 +1,7 @@
+from django.contrib.postgres.fields import ArrayField
 from django.db import models
 
+from apps.send.models import CHANNELS
 from apps.users.models import Company
 
 
@@ -14,6 +16,7 @@ class List(models.Model):
 class Campaign(models.Model):
     name = models.CharField(max_length=255)
     list = models.ForeignKey(List, on_delete=models.CASCADE)
+    channels = ArrayField(models.CharField(choices=CHANNELS, max_length=255), blank=True, null=True)
 
     @property
     def company(self):
