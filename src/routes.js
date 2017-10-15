@@ -9,6 +9,7 @@ let routes = [
   {path: '/', component: Home},
   {path: '/lists/', component: ListCollection},
   {path: '/lists/create/', component: ListForm},
+  {path: '/lists/update/:pk', component: ListForm},
   {path: '/campaigns/', component: CampaignCollection},
   { path: "*", component: NotFound }
 ];

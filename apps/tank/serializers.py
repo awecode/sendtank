@@ -6,7 +6,7 @@ from .models import List, Campaign
 class ListSerializer(serializers.ModelSerializer):
     class Meta:
         model = List
-        fields = ('name',)
+        fields = ('id', 'name',)
 
 
 class CampaignSerializer(serializers.ModelSerializer):
