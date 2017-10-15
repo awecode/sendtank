@@ -4,7 +4,6 @@
         <vue-form :fields="fields" action="lists/">
             <template scope="form">
                 <input type="text" v-model="fields.name" id="name" class="form-control" name="name" required/>
-                <!--<field-error :error="form.errors.get('name')"></field-error>-->
                 <span class="text-danger">{{form.errors.get('name')}}</span>
             </template>
         </vue-form>
@@ -13,10 +12,9 @@
 
 <script>
   import VueForm from '../components/form/VueForm.vue';
-  import FieldError from '../components/form/FieldError.vue';
 
   export default {
-    components: {VueForm, FieldError},
+    components: {VueForm},
     data() {
       return {
         fields: {
