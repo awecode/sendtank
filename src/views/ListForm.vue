@@ -1,26 +1,27 @@
 <template>
     <div>
         <h1>Create New List</h1>
-        <form method="POST" @submit.prevent="form.post('/api/v1/lists/')" @keydown="form.errors.clear($event.target.name)">
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" v-model="form.name" id="name" class="form-control" name="name"/>
-                <span class="text-danger" v-if="form.errors.has('name')">{{ form.errors.get('name') }}</span>
-            </div>
-            <button class="btn btn-success" :disabled="form.errors.any()">Create</button>
-        </form>
+        <vue-form :fields="fields" action="/api/v1/lists/">
+            <template scope="form">
+                <input type="text" v-model="fields.name" id="name" class="form-control" name="name"/>
+                <!--<field-error :error="form.errors.get('name')"></field-error>-->
+                <span class="text-danger">{{form.errors.get('name')}}</span>
+            </template>
+        </vue-form>
     </div>
 </template>
 
 <script>
-  import Form from '../includes/Form';
+  import VueForm from '../components/form/VueForm.vue';
+  import FieldError from '../components/form/FieldError.vue';
 
   export default {
+    components: {VueForm, FieldError},
     data() {
       return {
-        form: new Form({
-          'name': ''
-        })
+        fields: {
+          name: ''
+        }
       }
     }
   }
