@@ -9,8 +9,13 @@
                     </router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link to="/lists">
+                    <router-link to="/lists/">
                         <a class="nav-link">Lists</a>
+                    </router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link to="/campaigns/">
+                        <a class="nav-link">Campaigns</a>
                     </router-link>
                 </li>
             </ul>
