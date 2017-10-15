@@ -15,8 +15,8 @@ router.register('campaigns', tank_api.CampaignViewSet)
 
 urlpatterns = [
     url(r'^stadmin/', admin.site.urls),
-    url(r'^$', views.index, name='home'),
     url(r'^api/v1/', include(router.urls, namespace='api')),
+    url(r'^.*$', views.index, name='home'),
 ]
 
 if settings.DEBUG:
