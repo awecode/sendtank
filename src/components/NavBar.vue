@@ -18,8 +18,11 @@
                         <a class="nav-link">Campaigns</a>
                     </router-link>
                 </li>
-                <li><span v-if="loading">Loading...</span></li>
+
             </ul>
+            <div class="loader mx-auto" v-if="loading">
+                <div class='inner'></div>
+            </div>
             <form class="form-inline">
                 <input class="form-control mr-sm-2" type="text" placeholder="Search..." aria-label="Search">
             </form>
@@ -42,7 +45,7 @@
 </template>
 
 <script>
-    export default{
-      props: ['loading']
-    }
+  export default {
+    props: ['loading']
+  }
 </script>

@@ -1,23 +1,36 @@
-$dim: 120px;
+$blocking_dimension: 120px;
+$blocking_shadow: 0 4px 0 #00abf2 inset;
+$loading_dimension: 36px;
+$loading_shadow: 0 1px 1px 1px  #fff inset;
 
-.blocking-loader {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1200;
-  height: 100%;
-  width: 100%;
-  background: rgba(#ccc, 0.6);
-  .inner {
+.loader {
+  &.blocking {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: $dim;
-    height: $dim;
-    border-radius: $dim;
-    -moz-box-shadow: 0 4px 0 #00abf2 inset;
-    -webkit-box-shadow: 0 4px 0 #00abf2 inset;
-    box-shadow: 0 4px 0 #00abf2 inset;
+    top: 0;
+    left: 0;
+    z-index: 1200;
+    height: 100%;
+    width: 100%;
+    background: rgba(#ccc, 0.6);
+    .inner {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: $blocking_dimension;
+      height: $blocking_dimension;
+      border-radius: $blocking_dimension;
+      -moz-box-shadow: $blocking_shadow;
+      -webkit-box-shadow: $blocking_shadow;
+      box-shadow: $blocking_shadow;
+    }
+  }
+  .inner {
+    width: $loading_dimension;
+    height: $loading_dimension;
+    border-radius: $loading_dimension;
+    -moz-box-shadow: $loading_shadow;
+    -webkit-box-shadow: $loading_shadow;
+    box-shadow: $loading_shadow;
     animation: rotate-360 1s linear infinite;
   }
 }

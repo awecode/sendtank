@@ -1,7 +1,7 @@
 <template>
     <div>
-        <nav-bar :loading="loading"></nav-bar>
-        <div v-if="blocking" class="blocking-loader">
+        <nav-bar :loading="loading && !blocking"></nav-bar>
+        <div v-if="blocking" class="blocking loader">
             <div class='inner'></div>
         </div>
         <div class="container-fluid p-2">
