@@ -1,0 +1,38 @@
+$dim: 120px;
+
+.loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1200;
+  height: 100%;
+  width: 100%;
+  background: rgba(#ccc, 0.6);
+  .inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: $dim;
+    height: $dim;
+    border-radius: $dim;
+    -moz-box-shadow: 0 4px 0 #00abf2 inset;
+    -webkit-box-shadow: 0 4px 0 #00abf2 inset;
+    box-shadow: 0 4px 0 #00abf2 inset;
+    animation: rotate-360 1s linear infinite;
+  }
+}
+
+@keyframes rotate-360 {
+  from {
+    -moz-transform: rotate(0);
+    -ms-transform: rotate(0);
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+  to {
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}

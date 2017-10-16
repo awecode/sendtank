@@ -9,7 +9,7 @@
             <div class="form-group pt-2">
                 <slot name="submit">
                     <button v-if="fields.id" class="btn btn-warning" :disabled="errors.any()">Update</button>
-                    <button v-else class="btn btn-success" :disabled="errors.any()">Create</button>
+                    <button class="btn btn-success" :disabled="errors.any()" v-else>Create</button>
                 </slot>
             </div>
         </form>

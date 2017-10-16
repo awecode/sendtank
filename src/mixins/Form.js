@@ -5,16 +5,13 @@ export default {
   data() {
     return {
       loading: true,
-      fields: {
-        name: ''
-      }
+      fields: {}
     }
   },
   methods: {
     endpoint() {
       // noinspection JSUnresolvedVariable
       let endpoint = this.$options.endpoint;
-      // noinspection ES6ModulesDependencies
       if (this.$route.params.pk) {
         endpoint += this.$route.params.pk + '/';
       }
@@ -24,7 +21,9 @@ export default {
   created() {
     // noinspection ES6ModulesDependencies
     axios.get(this.endpoint()).then(({data}) => {
-      this.fields = data
+      this.fields = data;
+      this.loading = false;
     });
+
   }
 }
