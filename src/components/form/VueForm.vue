@@ -1,6 +1,6 @@
 <template>
     <div class="vue-form">
-        <form method="POST" @submit.prevent="post(action)" @keydown="errors.clear($event.target.name)">
+        <form method="POST" @submit.prevent="save(action)" @keydown="errors.clear($event.target.name)">
             <div>
                 <slot :errors="errors">
                 </slot>
@@ -46,10 +46,9 @@
 
     clear(field) {
       if (field) {
-        delete this.errors[field];
+        global.Vue.delete(this.errors, field);
         return;
       }
-
       this.errors = {};
     }
   }
@@ -79,6 +78,14 @@
         }
 
         this.errors.clear();
+      },
+
+      save(url) {
+        if (this.fields.id) {
+          this.put(url);
+        } else {
+          this.post(url);
+        }
       },
 
 
@@ -119,7 +126,6 @@
 
 
       onSuccess(data) {
-        alert(data.message);
         this.reset();
       },
 

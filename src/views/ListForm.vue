@@ -4,7 +4,7 @@
         <h1 v-else>Create New List</h1>
         <vue-form :fields="fields" :action="endpoint()">
             <template scope="form">
-                <input type="text" v-model="fields.name" id="name" class="form-control" name="name" required/>
+                <input type="text" v-model="fields.name" id="name" class="form-control" name="name"/>
                 <span class="text-danger">{{form.errors.get('name')}}</span>
             </template>
         </vue-form>

@@ -42,10 +42,12 @@
         this.loading = false;
         return response;
       }, (error) => {
-        alert(error);
+        this.loading = false;
         return Promise.reject(error);
       });
       global.axios = axios;
+
+      global.Vue = Vue;
 
       global.bus = new Vue();
       global.bus.$on('loading', () => {
