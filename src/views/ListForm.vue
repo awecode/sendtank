@@ -15,7 +15,9 @@
   import Form from '../mixins/Form'
 
   export default {
-    endpoint: 'lists/',
     mixins: [Form],
+    endpoint: 'lists/',
+    success_url: '/lists/',
+    collection_name: 'lists',
   }
 </script>

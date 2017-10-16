@@ -59,7 +59,7 @@
     props: ['fields', 'action'],
 
     data() {
-      let dct = {}
+      let dct = {};
       dct.field_names = [];
 
       for (let field in this.data) {
@@ -73,19 +73,17 @@
     methods: {
 
       reset() {
-        for (let field in this.field_names) {
-          this[field] = '';
-        }
-
         this.errors.clear();
       },
 
       save(url) {
+        let verb;
         if (this.fields.id) {
-          this.put(url);
+          verb = 'put';
         } else {
-          this.post(url);
+          verb = 'post';
         }
+        this.submit(verb, url);
       },
 
 
@@ -114,11 +112,12 @@
           axios[requestType](url, this.fields)
             .then(response => {
               this.onSuccess(response.data);
+              this.$parent.$emit('success', response.data);
               resolve(response.data);
             })
             .catch(error => {
               this.onFail(error.response.data);
-
+              this.$parent.$emit('failure', error.response.data);
               reject(error.response.data);
             });
         });

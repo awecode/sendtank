@@ -15,7 +15,14 @@ const store = new Vuex.Store({
       let collection_name = payload[0];
       let data = payload[1];
       Vue.set(state, collection_name, data);
-      // state[collection_name] = data;
+    },
+    update_collection_item(state, payload) {
+      let collection = state[payload[0]];
+      let data = payload[1];
+      if (collection && data.id) {
+        let index = collection.findIndex(x => x.id == data.id);
+        collection[index] = data;
+      }
     }
   },
   strict: process.env.NODE_ENV !== 'production'
