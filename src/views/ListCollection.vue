@@ -21,6 +21,7 @@
 
   export default {
     endpoint: 'lists/',
+    collection_name: 'lists',
     mixins: [Collection],
   }
 </script>
