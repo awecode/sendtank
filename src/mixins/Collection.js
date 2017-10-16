@@ -11,6 +11,9 @@ export default {
     // noinspection JSUnresolvedVariable
     let endpoint = this.$options.endpoint;
     // noinspection ES6ModulesDependencies
-    axios.get(endpoint).then(({data}) => this.data = data);
+    global.axios.get(endpoint).then(({data}) => {
+        this.data = data
+      }
+    );
   }
 }

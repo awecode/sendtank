@@ -20,10 +20,12 @@ export default {
   },
   created() {
     // noinspection ES6ModulesDependencies
-    axios.get(this.endpoint()).then(({data}) => {
-      this.fields = data;
-      this.loading = false;
-    });
+    if (this.$route.params.pk) {
+      global.axios.get(this.endpoint()).then(({data}) => {
+        this.fields = data;
+        this.loading = false;
+      });
+    }
 
   }
 }
