@@ -18,6 +18,7 @@
                         <a class="nav-link">Campaigns</a>
                     </router-link>
                 </li>
+                <li><span v-if="loading">Loading...</span></li>
             </ul>
             <form class="form-inline">
                 <input class="form-control mr-sm-2" type="text" placeholder="Search..." aria-label="Search">
@@ -39,3 +40,9 @@
         </div>
     </nav>
 </template>
+
+<script>
+    export default{
+      props: ['loading']
+    }
+</script>

@@ -4,8 +4,17 @@ import Vue from 'vue'
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
-  state: {},
+  state: {
+    'blocking': false,
+    'loading': false,
+  },
   mutations: {
+    loading(state, bool){
+      state.loading = bool;
+    },
+    blocking(state, bool){
+      state.blocking = bool;
+    },
     create_collection(state, collection_name) {
       if (!state[collection_name]) {
         Vue.set(state, collection_name, []);
