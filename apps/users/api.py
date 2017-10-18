@@ -1,4 +1,4 @@
-from rest_framework.decorators import api_view, list_route
+from rest_framework.decorators import list_route
 from rest_framework.exceptions import APIException
 from rest_framework.response import Response
 from rest_framework import viewsets
@@ -14,7 +14,7 @@ class RoleViewSet(viewsets.GenericViewSet):
     @list_route(methods=['POST'])
     def switch(self, request):
         try:
-            role = Role.objects.get(request.data.get('id'), user=request.user)
+            role = Role.objects.get(id=request.data.get('id'), user=request.user)
             request.session['role'] = role.id
             return Response(RoleSerializer(role).data)
         except Role.DoesNotExist:

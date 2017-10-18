@@ -3,6 +3,7 @@ import Vue from 'vue'
 
 Vue.use(Vuex);
 
+// noinspection JSUnresolvedVariable
 const store = new Vuex.Store({
   state: {
     'blocking': false,
@@ -35,7 +36,15 @@ const store = new Vuex.Store({
       }
     },
     change_role(state, role_id) {
-      console.log(role_id);
+      state.blocking = true;
+      global.axios.post('roles/switch/', {id: role_id}).then(data => {
+        let roles = state.roles;
+        roles.forEach(role => {
+          role.active = role.id == role_id;
+        });
+        state.roles = roles;
+        state.blocking = false;
+      });
     }
   },
   strict: process.env.NODE_ENV !== 'production'
