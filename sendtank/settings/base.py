@@ -18,11 +18,13 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'apps.users.middleware.RoleMiddleware',
 ]
 
 ROOT_URLCONF = 'sendtank.urls'
