@@ -18,6 +18,8 @@ export default {
         }
       };
 
+      Object.assign(settings, options);
+
       let notice = $('<div/>').addClass('alert ' + settings.typeClasses[type]);
 
       if (settings.dismissable) {
@@ -56,16 +58,16 @@ export default {
     });
 
     Vue.prototype.$notify = {
-      error: function (message) {
+      error: message => {
         return notifier('error', message);
       },
-      warning: function (message) {
+      warning: message => {
         return notifier('warning', message);
       },
-      info: function (message) {
+      info: message => {
         return notifier('info', message);
       },
-      success: function (message) {
+      success: message => {
         return notifier('success', message);
       }
     }
