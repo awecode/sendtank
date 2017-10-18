@@ -81,7 +81,7 @@ class Role(models.Model):
     type = models.CharField(choices=ROLES, max_length=20, default='Staff')
 
     def __str__(self):
-        return str(self.user) + ' as ' + self.type + ' at ' + str(self.company)
+        return self.type
 
     class Meta:
         unique_together = ('user', 'company', 'type')

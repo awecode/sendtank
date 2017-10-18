@@ -1,4 +1,4 @@
-{% load staticfiles %}
+{% load staticfiles custom_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,12 +11,14 @@
 </head>
 <body>
 {% block content %}
-{#    {{ request.role }}#}
     <div id="app">
         <app></app>
     </div>
 {% endblock %}
 {% block js %}
+    <script>
+      window._roles = {{ request.role_data|jsonify }};
+    </script>
     <script src="{% static 'dist/js/common.js' %}"></script>
     <script src="{% static 'dist/js/main.js' %}"></script>
 {% endblock %}
