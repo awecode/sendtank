@@ -7,12 +7,13 @@ const store = new Vuex.Store({
   state: {
     'blocking': false,
     'loading': false,
+    'roles': global._roles,
   },
   mutations: {
-    loading(state, bool){
+    loading(state, bool) {
       state.loading = bool;
     },
-    blocking(state, bool){
+    blocking(state, bool) {
       state.blocking = bool;
     },
     create_collection(state, collection_name) {

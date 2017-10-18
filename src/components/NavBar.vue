@@ -34,6 +34,18 @@
                         User
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right">
+                        <li v-for="role in roles" class="dropdown-item" v-if="role.active">
+                            <div>Using as:</div>
+                            {{ role.type }} @ {{ role.company.name }}
+                        </li>
+                        <li class="dropdown-divider"></li>
+                        <li v-for="(role, index) in roles" class="dropdown-item" v-if="!role.active">
+                            <div v-if="index==1">Use as:</div>
+                            <a href="#">
+                                {{ role.type }} @ {{ role.company.name }}
+                            </a>
+                        </li>
+                        <li class="dropdown-divider"></li>
                         <li class="dropdown-item"><a href="{% url 'account_change_password' %}">Change Password</a></li>
                         <li class="dropdown-item"><a href="{% url 'socialaccount_connections' %}">Social Accounts</a></li>
                         <li class="dropdown-item"><a href="{% url 'account_logout' %}">Sign Out</a></li>
@@ -45,7 +57,16 @@
 </template>
 
 <script>
+  import {mapState} from 'vuex'
+
   export default {
-    props: ['loading']
+    props: ['loading'],
+    computed: mapState([
+      'roles'
+    ])
   }
 </script>
+
+<style>
+
+</style>

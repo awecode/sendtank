@@ -11,8 +11,8 @@
 </head>
 <body>
 {% block content %}
+    {{ request.role }}
     <div id="app">
-        <app></app>
     </div>
 {% endblock %}
 {% block js %}
