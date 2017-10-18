@@ -1,6 +1,7 @@
 <template>
     <div class="vue-form">
         <form method="POST" @submit.prevent="save(action)" @keydown="errors.clear($event.target.name)">
+            <span class="text-danger">{{errors.get('__form__')}}</span>
             <div>
                 <slot :errors="errors">
                 </slot>
