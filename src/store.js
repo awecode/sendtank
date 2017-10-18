@@ -35,15 +35,21 @@ const store = new Vuex.Store({
         collection[index] = data;
       }
     },
-    change_role(state, role_id) {
-      state.blocking = true;
+    update_roles(state, roles) {
+      state.roles = roles;
+    },
+
+  },
+  actions: {
+    change_role({commit, state}, role_id) {
+      commit('blocking', true);
       global.axios.post('roles/switch/', {id: role_id}).then(data => {
-        let roles = state.roles;
+        let roles = global.clone(state.roles);
         roles.forEach(role => {
           role.active = role.id == role_id;
         });
-        state.roles = roles;
-        state.blocking = false;
+        commit('update_roles', roles);
+        commit('blocking', false);
       });
     }
   },

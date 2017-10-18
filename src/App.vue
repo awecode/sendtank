@@ -43,7 +43,13 @@
         return Promise.reject(error);
       });
       global.axios = axios;
+
+      global.clone = (obj => {
+        return JSON.parse(JSON.stringify(obj))
+      });
+
       global.Vue = Vue;
+
     },
     computed: mapState([
       'loading', 'blocking'

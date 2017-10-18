@@ -40,7 +40,7 @@
                         </li>
                         <li class="dropdown-divider"></li>
                         <li v-for="(role, index) in roles" class="dropdown-item" v-if="!role.active">
-                            <div v-if="index==1">Use as:</div>
+                            <!--<div v-if="index==1">Use as:</div>-->
                             <a href="#" @click.prevent="change_role(role.id)">
                                 {{ role.type }} @ {{ role.company.name }}
                             </a>
@@ -57,7 +57,7 @@
 </template>
 
 <script>
-  import {mapState, mapMutations} from 'vuex'
+  import {mapState, mapActions} from 'vuex'
 
   export default {
     props: ['loading'],
@@ -65,7 +65,7 @@
       'roles'
     ]),
     methods: {
-      ...mapMutations([
+      ...mapActions([
         'change_role'
       ])
     }
