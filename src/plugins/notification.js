@@ -1,13 +1,15 @@
 export default {
   install(Vue, options) {
 
+    const placeholder_id = 'v-notifications-container';
+
     let notifier = function (type, message) {
 
       let settings = {
         prepend: false,
         dismissable: true,
         animate: true,
-        attachTo: $('#alert-container'),
+        attachTo: $('#' + placeholder_id),
         typeClasses: {
           success: 'alert-success',
           info: 'alert-info',
@@ -34,7 +36,6 @@ export default {
         if (settings.animate) {
           notice.addClass('fade show');
         }
-
       }
 
       notice.append(message);
@@ -49,6 +50,10 @@ export default {
       return this;
 
     };
+
+    Vue.component('notifications', {
+      template: `<div id="${placeholder_id}"></div>`
+    });
 
     Vue.prototype.$notify = {
       error: function (message) {
