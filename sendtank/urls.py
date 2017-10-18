@@ -6,12 +6,15 @@ from django.conf.urls.static import static
 from rest_framework.routers import DefaultRouter
 
 from apps.users import views
+
 from apps.tank import api as tank_api
+from apps.users import api as users_api
 
 router = DefaultRouter()
 
 router.register('lists', tank_api.ListViewSet)
 router.register('campaigns', tank_api.CampaignViewSet)
+router.register('roles', users_api.RoleViewSet)
 
 urlpatterns = [
     url(r'^stadmin/', admin.site.urls),

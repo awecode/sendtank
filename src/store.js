@@ -33,6 +33,9 @@ const store = new Vuex.Store({
         let index = collection.findIndex(x => x.id == data.id);
         collection[index] = data;
       }
+    },
+    change_role(state, role_id) {
+      console.log(role_id);
     }
   },
   strict: process.env.NODE_ENV !== 'production'
