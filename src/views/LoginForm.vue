@@ -28,6 +28,12 @@
     mixins: [Form],
     endpoint: 'users/login/',
     success_url: '/',
-    success_message: 'Logged In'
+    success_message: 'Logged In',
+    mounted() {
+      if (this.$store.state.user) {
+        this.$router.push({path: this.$options.success_url});
+        this.$notify.info('You are already logged in.');
+      }
+    }
   }
 </script>

@@ -119,7 +119,7 @@
             .catch(error => {
               this.onFail(error.response.data);
               this.$parent.$emit('failure', error.response.data);
-              reject(error.response.data);
+              // reject(error.response.data);
             });
         });
       },

@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login
 from rest_framework.decorators import list_route
 from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
@@ -44,6 +44,7 @@ class UserViewSet(viewsets.GenericViewSet):
         check_required_fields(data, required_fields)
         user = authenticate(username=data.get('email'), password=data.get('password'))
         if user:
-            return Response(UserSerializer(user).data)
+            login(request, user)
+            return Response(user.data)
         else:
             raise ValidationError({'__form__': ['Invalid email or password']})

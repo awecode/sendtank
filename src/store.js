@@ -9,6 +9,7 @@ const store = new Vuex.Store({
     'blocking': false,
     'loading': false,
     'roles': global._roles,
+    'user': global._user
   },
   mutations: {
     loading(state, bool) {
