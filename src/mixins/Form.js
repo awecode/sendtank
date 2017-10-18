@@ -31,6 +31,7 @@ export default {
     this.$on('success', (data) => {
       this.$store.commit('update_collection_item', [this.$options.collection_name, data]);
       this.$router.push({path: this.$options.success_url});
+      this.$notify.success('Saved');
     });
   }
 }
