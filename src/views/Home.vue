@@ -5,7 +5,7 @@
 </template>
 
 <script>
-    import LoginRequired from "../mixins/LoginRequired";
+    import LoginRequired from "../mixins/LoginRequired"
 
     export default{
       mixins: [LoginRequired]
