@@ -1,39 +1,31 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="/">SendTank</a>
+        <router-link to="/" exact><a href="/" class="navbar-brand">
+            <span v-if="role">{{role.company.name}}</span>
+            SendTank
+        </a></router-link>
         <div class="collapse navbar-collapse">
-            <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav mr-auto" v-if="user">
                 <li class="nav-item">
-                    <router-link to="/" exact>
-                        <a class="nav-link">Home</a>
-                    </router-link>
+                    <router-link to="/lists/"><a class="nav-link">Lists</a></router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link to="/lists/">
-                        <a class="nav-link">Lists</a>
-                    </router-link>
-                </li>
-                <li class="nav-item">
-                    <router-link to="/campaigns/">
-                        <a class="nav-link">Campaigns</a>
-                    </router-link>
+                    <router-link to="/campaigns/"><a class="nav-link">Campaigns</a></router-link>
                 </li>
 
             </ul>
             <div class="loader mx-auto" v-if="loading">
                 <div class='inner'></div>
             </div>
-            <form class="form-inline">
+            <form class="form-inline" v-if="user">
                 <input class="form-control mr-sm-2" type="text" placeholder="Search..." aria-label="Search">
             </form>
             <ul class="navbar-nav">
                 <li class="nav-item active" v-if="user"><a class="nav-link" @click.prevent="logout" href="#">Sign Out</a></li>
                 <li class="nav-item" v-else>
-                    <router-link to="/login/">
-                        <a class="nav-link">Login</a>
-                    </router-link>
+                    <router-link to="/login/"><a class="nav-link">Login</a></router-link>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" v-if="user">
                     <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
                         User
