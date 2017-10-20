@@ -18,19 +18,19 @@ const store = new Vuex.Store({
     blocking(state, bool) {
       state.blocking = bool;
     },
+    update_object(state, [object_name, data]) {
+      Vue.set(state, object_name, data);
+    },
     create_collection(state, collection_name) {
       if (!state[collection_name]) {
         Vue.set(state, collection_name, []);
       }
     },
-    update_collection(state, payload) {
-      let collection_name = payload[0];
-      let data = payload[1];
+    update_collection(state, [collection_name, data]) {
       Vue.set(state, collection_name, data);
     },
-    update_collection_item(state, payload) {
-      let collection = state[payload[0]];
-      let data = payload[1];
+    update_collection_item(state, [collection_name, data]) {
+      let collection = state[collection_name];
       if (collection && data.id) {
         let index = collection.findIndex(x => x.id == data.id);
         collection[index] = data;

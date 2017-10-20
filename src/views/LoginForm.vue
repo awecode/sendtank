@@ -27,6 +27,7 @@
   export default {
     mixins: [Form],
     endpoint: 'users/login/',
+    object_name: 'user',
     success_url: '/',
     success_message: 'Logged In',
     mounted() {
