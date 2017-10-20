@@ -27,7 +27,7 @@
                 <input class="form-control mr-sm-2" type="text" placeholder="Search..." aria-label="Search">
             </form>
             <ul class="navbar-nav">
-                <li class="nav-item active"><a class="nav-link" href="{% url 'account_logout' %}">Sign Out</a></li>
+                <li class="nav-item active"><a class="nav-link" @click.prevent="logout" href="#">Sign Out</a></li>
                 <li class="nav-item dropdown">
                     <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
@@ -66,7 +66,8 @@
     ]),
     methods: {
       ...mapActions([
-        'change_role'
+        'change_role',
+        'logout',
       ])
     }
   }

@@ -39,6 +39,9 @@ const store = new Vuex.Store({
     update_roles(state, roles) {
       state.roles = roles;
     },
+    clear_user(state) {
+      state.user = null;
+    },
 
   },
   actions: {
@@ -50,6 +53,13 @@ const store = new Vuex.Store({
           role.active = role.id == role_id;
         });
         commit('update_roles', roles);
+        commit('blocking', false);
+      });
+    },
+    logout({commit, state}, role_id) {
+      commit('blocking', true);
+      global.axios.post('users/logout/').then(data => {
+        commit('clear_user');
         commit('blocking', false);
       });
     }
