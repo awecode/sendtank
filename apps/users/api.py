@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from rest_framework.decorators import list_route
 from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
@@ -48,3 +48,8 @@ class UserViewSet(viewsets.GenericViewSet):
             return Response(user.data)
         else:
             raise ValidationError({'__form__': ['Invalid email or password']})
+
+    @list_route(methods=['POST'])
+    def logout(self, request):
+        logout(request)
+        return Response({})

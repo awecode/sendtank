@@ -27,7 +27,12 @@
                 <input class="form-control mr-sm-2" type="text" placeholder="Search..." aria-label="Search">
             </form>
             <ul class="navbar-nav">
-                <li class="nav-item active"><a class="nav-link" @click.prevent="logout" href="#">Sign Out</a></li>
+                <li class="nav-item active" v-if="user"><a class="nav-link" @click.prevent="logout" href="#">Sign Out</a></li>
+                <li class="nav-item" v-else>
+                    <router-link to="/login/">
+                        <a class="nav-link">Login</a>
+                    </router-link>
+                </li>
                 <li class="nav-item dropdown">
                     <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
@@ -62,12 +67,17 @@
   export default {
     props: ['loading'],
     computed: mapState([
-      'roles'
+      'roles', 'user'
     ]),
     methods: {
+      logout() {
+        this.$store.dispatch('logout').then(() => {
+          this.$router.push('/login');
+          this.$notify.success('Logged out!');
+        });
+      },
       ...mapActions([
         'change_role',
-        'logout',
       ])
     }
   }

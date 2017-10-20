@@ -56,11 +56,14 @@ const store = new Vuex.Store({
         commit('blocking', false);
       });
     },
-    logout({commit, state}, role_id) {
-      commit('blocking', true);
-      global.axios.post('users/logout/').then(data => {
-        commit('clear_user');
-        commit('blocking', false);
+    logout({commit}) {
+      return new Promise((resolve, reject) => {
+        commit('blocking', true);
+        global.axios.post('users/logout/').then(data => {
+          commit('clear_user');
+          commit('blocking', false);
+          resolve();
+        });
       });
     }
   },
