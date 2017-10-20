@@ -39,13 +39,14 @@
                         User
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right">
-                        <li v-for="role in roles" class="dropdown-item" v-if="role.active">
+                        <li class="dropdown-item">
                             <div>Using as:</div>
                             {{ role.type }} @ {{ role.company.name }}
                         </li>
                         <li class="dropdown-divider"></li>
+                        <li class="dropdown-item" v-if="roles.length>1">Use as:</li>
                         <li v-for="(role, index) in roles" class="dropdown-item" v-if="!role.active">
-                            <!--<div v-if="index==1">Use as:</div>-->
+
                             <a href="#" @click.prevent="change_role(role.id)">
                                 {{ role.type }} @ {{ role.company.name }}
                             </a>
@@ -67,7 +68,7 @@
   export default {
     props: ['loading'],
     computed: mapState([
-      'roles', 'user'
+      'roles', 'user', 'role'
     ]),
     methods: {
       logout() {

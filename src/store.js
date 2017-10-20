@@ -3,13 +3,16 @@ import Vue from 'vue'
 
 Vue.use(Vuex);
 
+let role = global._roles.find(x => x.active === true);
+
 // noinspection JSUnresolvedVariable
 const store = new Vuex.Store({
   state: {
     'blocking': false,
     'loading': false,
     'roles': global._roles,
-    'user': global._user
+    'user': global._user,
+    'role': role,
   },
   mutations: {
     loading(state, bool) {
@@ -32,12 +35,17 @@ const store = new Vuex.Store({
     update_collection_item(state, [collection_name, data]) {
       let collection = state[collection_name];
       if (collection && data.id) {
+        // noinspection EqualityComparisonWithCoercionJS
         let index = collection.findIndex(x => x.id == data.id);
         collection[index] = data;
       }
     },
     update_roles(state, roles) {
       state.roles = roles;
+    },
+    update_role(state, role) {
+      role.active = true;
+      state.role = role;
     },
     clear_user(state) {
       state.user = null;
@@ -50,7 +58,12 @@ const store = new Vuex.Store({
       global.axios.post('roles/switch/', {id: role_id}).then(data => {
         let roles = global.clone(state.roles);
         roles.forEach(role => {
-          role.active = role.id == role_id;
+          if (role.id === role_id) {
+            role.active = true;
+            commit('update_role', role);
+          } else {
+            role.active = false;
+          }
         });
         commit('update_roles', roles);
         commit('blocking', false);
