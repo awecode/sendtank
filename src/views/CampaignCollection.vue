@@ -9,9 +9,10 @@
 
 <script>
   import Collection from '../mixins/Collection'
+  import LoginRequired from '../mixins/LoginRequired'
 
   export default {
     endpoint: 'campaigns/',
-    mixins: [Collection],
+    mixins: [Collection, LoginRequired],
   }
 </script>

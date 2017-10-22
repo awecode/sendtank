@@ -55,6 +55,11 @@ class User(AbstractBaseUser):
     def is_staff(self):
         return self.is_superuser
 
+    @property
+    def data(self):
+        from .serializers import UserSerializer
+        return UserSerializer(self).data
+
     def __str__(self):
         return self.full_name
 

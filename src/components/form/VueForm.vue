@@ -1,6 +1,7 @@
 <template>
     <div class="vue-form">
         <form method="POST" @submit.prevent="save(action)" @keydown="errors.clear($event.target.name)">
+            <span class="text-danger">{{errors.get('__form__')}}</span>
             <div>
                 <slot :errors="errors">
                 </slot>
@@ -118,7 +119,7 @@
             .catch(error => {
               this.onFail(error.response.data);
               this.$parent.$emit('failure', error.response.data);
-              reject(error.response.data);
+              // reject(error.response.data);
             });
         });
       },

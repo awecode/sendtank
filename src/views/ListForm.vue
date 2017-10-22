@@ -13,9 +13,10 @@
 
 <script>
   import Form from '../mixins/Form'
+  import LoginRequired from '../mixins/LoginRequired'
 
   export default {
-    mixins: [Form],
+    mixins: [Form, LoginRequired],
     endpoint: 'lists/',
     success_url: '/lists/',
     collection_name: 'lists',

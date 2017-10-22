@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Role, Company
+from .models import Role, Company, User
 
 
 class CompanySerializer(serializers.ModelSerializer):
@@ -23,3 +23,9 @@ class RoleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Role
         fields = ('id', 'type', 'company', 'active')
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'full_name', 'email')

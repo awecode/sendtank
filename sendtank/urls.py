@@ -15,6 +15,7 @@ router = DefaultRouter()
 router.register('lists', tank_api.ListViewSet)
 router.register('campaigns', tank_api.CampaignViewSet)
 router.register('roles', users_api.RoleViewSet)
+router.register('users', users_api.UserViewSet)
 
 urlpatterns = [
     url(r'^stadmin/', admin.site.urls),

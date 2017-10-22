@@ -29,9 +29,16 @@ export default {
   },
   mounted() {
     this.$on('success', (data) => {
-      this.$store.commit('update_collection_item', [this.$options.collection_name, data]);
-      this.$router.push({path: this.$options.success_url});
-      this.$notify.success('Saved');
+      if (this.$options.collection_name) {
+        this.$store.commit('update_collection_item', [this.$options.collection_name, data]);
+      }
+      if (this.$options.object_name) {
+        this.$store.commit('update_object', [this.$options.object_name, data]);
+      }
+      if (this.$options.success_url) {
+        this.$router.push({path: this.$options.success_url});
+      }
+      this.$notify.success(this.$options.success_message || 'Saved');
     });
   }
 }

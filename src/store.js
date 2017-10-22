@@ -3,6 +3,8 @@ import Vue from 'vue'
 
 Vue.use(Vuex);
 
+let role = global._roles.find(x => x.active === true);
+
 // noinspection JSUnresolvedVariable
 const store = new Vuex.Store({
   state: {
@@ -12,6 +14,7 @@ const store = new Vuex.Store({
     'user': global._user,
     'role': role,
     'notifications': [],
+
   },
   mutations: {
     loading(state, bool) {
@@ -20,6 +23,7 @@ const store = new Vuex.Store({
     blocking(state, bool) {
       state.blocking = bool;
     },
+
     notify(state, [type, message]) {
       state.notifications.push({type, message})
     },
@@ -31,21 +35,26 @@ const store = new Vuex.Store({
         Vue.set(state, collection_name, []);
       }
     },
-    update_collection(state, payload) {
-      let collection_name = payload[0];
-      let data = payload[1];
+    update_collection(state, [collection_name, data]) {
       Vue.set(state, collection_name, data);
     },
-    update_collection_item(state, payload) {
-      let collection = state[payload[0]];
-      let data = payload[1];
+    update_collection_item(state, [collection_name, data]) {
+      let collection = state[collection_name];
       if (collection && data.id) {
+        // noinspection EqualityComparisonWithCoercionJS
         let index = collection.findIndex(x => x.id == data.id);
         collection[index] = data;
       }
     },
     update_roles(state, roles) {
       state.roles = roles;
+    },
+    update_role(state, role) {
+      role.active = true;
+      state.role = role;
+    },
+    clear_user(state) {
+      state.user = null;
     },
 
   },
@@ -55,10 +64,25 @@ const store = new Vuex.Store({
       global.axios.post('roles/switch/', {id: role_id}).then(data => {
         let roles = global.clone(state.roles);
         roles.forEach(role => {
-          role.active = role.id == role_id;
+          if (role.id === role_id) {
+            role.active = true;
+            commit('update_role', role);
+          } else {
+            role.active = false;
+          }
         });
         commit('update_roles', roles);
         commit('blocking', false);
+      });
+    },
+    logout({commit}) {
+      return new Promise((resolve, reject) => {
+        commit('blocking', true);
+        global.axios.post('users/logout/').then(data => {
+          commit('clear_user');
+          commit('blocking', false);
+          resolve();
+        });
       });
     }
   },
