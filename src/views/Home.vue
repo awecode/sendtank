@@ -8,6 +8,7 @@
   import LoginRequired from "../mixins/LoginRequired"
 
   export default {
+    title: 'Home',
     mixins: [LoginRequired],
   }
 </script>

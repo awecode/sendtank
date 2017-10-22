@@ -2,7 +2,8 @@
     <nav aria-label="breadcrumb" role="navigation" id="v-breadcrumbs-container">
         <ol class="breadcrumb">
             <li v-for="obj in breadcrumbs" class="breadcrumb-item">
-                {{obj}}
+                <router-link :to="obj.path">{{obj.title}}</router-link>
+                
             </li>
         </ol>
     </nav>
@@ -18,14 +19,16 @@
         let objs = [];
         global.xyz = this;
         path_splits.forEach((split, index) => {
-          if (split) {
-            let path = path_splits.slice(0, index + 1).join('/');
+            let obj = {};
+            let path = path_splits.slice(0, index + 1).join('/')+'/';
             let matched = this.$router.resolve(path).route.matched;
             if (matched.length && !matched[0].components.default.error) {
-              console.log(path);
+              obj.title = matched[0].components.default.title || split.replace('-', ' ');
+              obj.path = path;
+              objs.push(obj);
             }
-            objs.push(split);
-          }
+            
+          
         });
         return objs;
 
