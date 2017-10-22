@@ -8,15 +8,28 @@
                 <span class="text-danger">{{form.errors.get('name')}}</span>
             </template>
         </vue-form>
+        <div v-if="fields.customers">
+            <h2>Users</h2>
+            {{fields.customers.page_size}} of {{fields.customers.count}}
+            <table class="table">
+                <tr v-for="customer in fields.customers.results">
+                    <td>{{customer.name}}</td>
+                    <td><span class="badge badge-secondary mr-1" v-for="email in customer.email">{{email}}</span></td>
+                    <td><span class="badge badge-secondary mr-1" v-for="phone in customer.phone">{{phone}}</span></td>
+                </tr>
+            </table>
+        </div>
     </div>
 </template>
 
 <script>
   import Form from '../mixins/Form'
   import LoginRequired from '../mixins/LoginRequired'
-  import List from '../models/List'
 
   export default {
-    mixins: [Form, LoginRequired, List],
+    endpoint: 'lists/',
+    success_url: '/lists/',
+    collection_name: 'lists',
+    mixins: [Form, LoginRequired],
   }
 </script>
