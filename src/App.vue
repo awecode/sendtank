@@ -2,6 +2,7 @@
     <div>
         <nav-bar :loading="loading && !blocking"></nav-bar>
         <notification></notification>
+        <breadcrumb></breadcrumb>
         <div v-if="blocking" class="blocking loader">
             <div class='inner'></div>
         </div>
@@ -14,13 +15,14 @@
 <script>
   import NavBar from './components/NavBar.vue'
   import Notification from './components/Notification.vue'
+  import Breadcrumb from './components/Breadcrumb.vue'
   import Vue from 'vue'
   import axios from 'axios'
   import {mapState} from 'vuex'
 
   export default {
     name: 'app',
-    components: {NavBar, Notification},
+    components: {NavBar, Notification, Breadcrumb},
 
     created() {
 
