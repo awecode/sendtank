@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import List, Campaign, Customer
+from .models import List, Campaign, Customer, ListCustomer
 
 
 class ListAdmin(admin.ModelAdmin):
@@ -26,6 +26,8 @@ class CampaignAdmin(admin.ModelAdmin):
 class CustomerAdmin(admin.ModelAdmin):
     list_display = ('name', 'short_name', 'email', 'phone')
 
+
+admin.site.register(ListCustomer)
 
 admin.site.register(Customer, CustomerAdmin)
 
