@@ -16,6 +16,14 @@ const store = new Vuex.Store({
     'notifications': [],
 
   },
+  getters: {
+    get_object: (state, getters) => (collection_name, key, key_name = 'id') => {
+      let collection = state[collection_name];
+      if (collection) {
+        return state[collection_name].find(obj => obj[key_name] == key);
+      }
+    }
+  },
   mutations: {
     loading(state, bool) {
       state.loading = bool;
