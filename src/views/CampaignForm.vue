@@ -24,6 +24,7 @@
 
 <script>
   import Form from '../mixins/Form'
+  import List from '../models/List'
   import LoginRequired from '../mixins/LoginRequired'
   import {mapState} from 'vuex'
 
@@ -32,6 +33,7 @@
     endpoint: 'campaigns/',
     success_url: '/campaigns/',
     collection_name: 'campaigns',
+    dependencies: [List],
     computed: mapState([
       'lists',
     ]),

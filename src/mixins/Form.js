@@ -16,14 +16,18 @@ export default {
       }
       return endpoint
     },
-    log(x) {
-      console.log(x);
-    }
   },
   created() {
     if (this.$route.params.pk) {
       global.axios.get(this.endpoint()).then(({data}) => {
         this.fields = data;
+      });
+    }
+    if (this.$options.dependencies) {
+      this.$options.dependencies.forEach((model) => {
+        global.axios.get(model.endpoint).then(({data}) => {
+          this.$store.commit('update_collection', [model.collection_name, data]);
+        });
       });
     }
   },
@@ -40,5 +44,5 @@ export default {
       }
       this.$store.dispatch('notify', ['success', 'Saved!']);
     });
-  }
+  },
 }

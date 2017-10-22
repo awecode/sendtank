@@ -14,11 +14,9 @@
 <script>
   import Form from '../mixins/Form'
   import LoginRequired from '../mixins/LoginRequired'
+  import List from '../models/List'
 
   export default {
-    mixins: [Form, LoginRequired],
-    endpoint: 'lists/',
-    success_url: '/lists/',
-    collection_name: 'lists',
+    mixins: [Form, LoginRequired, List],
   }
 </script>
