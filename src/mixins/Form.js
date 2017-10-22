@@ -38,7 +38,7 @@ export default {
       if (this.$options.success_url) {
         this.$router.push({path: this.$options.success_url});
       }
-      this.$notify.success(this.$options.success_message || 'Saved');
+      this.$store.dispatch('notify', ['success', 'Saved!']);
     });
   }
 }

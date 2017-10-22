@@ -78,7 +78,6 @@ const store = new Vuex.Store({
           commit('deactivate_notification', index);
         }, 3000);
       }
-
     },
     change_role({commit, state}, role_id) {
       commit('blocking', true);

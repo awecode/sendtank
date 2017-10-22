@@ -17,7 +17,6 @@
       breadcrumbs() {
         let path_splits = this.$route.path.split('/');
         let objs = [];
-        global.xyz = this;
         path_splits.forEach((split, index) => {
           let crumb = {};
           let path = path_splits.slice(0, index + 1).join('/') + '/';

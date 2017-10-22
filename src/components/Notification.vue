@@ -3,8 +3,8 @@
 
         <div v-for="notification in notifications">
             <transition name="fade">
-                <div v-if="notification.active"
-                     class="alert alert-danger" :class="notification.dismissable && 'alert-dismissable'" role="alert">
+                <div v-if="notification.active" role="alert"
+                     :class="['alert', notification.dismissable?'alert-dismissable':'', 'alert-'+notification.type]">
                     {{notification.message}}
                     <button v-if="notification.dismissable" type="button" class="close ml-2" data-dismiss="alert"
                             aria-label="Close">
