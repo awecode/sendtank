@@ -4,3 +4,19 @@
   right: 50px;
   z-index: 1100;
 }
+
+[v-cloak] > * {
+  display: none;
+}
+
+[v-cloak]::before {
+  content: "Loading…";
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 3s ease-out;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0 !important;
+}

@@ -23,8 +23,11 @@ const store = new Vuex.Store({
     blocking(state, bool) {
       state.blocking = bool;
     },
-    notify(state, [type, message, dismissable = true, fade_out = true]) {
-      state.notifications.push({type, message, dismissable, fade_out})
+    notify(state, obj) {
+      state.notifications.push(obj)
+    },
+    deactivate_notification(state, index) {
+      state.notifications[index - 1].active = false;
     },
     update_object(state, [object_name, data]) {
       Vue.set(state, object_name, data);
@@ -58,8 +61,16 @@ const store = new Vuex.Store({
 
   },
   actions: {
-    notify({commit}, [type, message, dismissable = true, fade_out = true]) {
-      commit('notify', [type, message, dismissable, fade_out])
+    notify({commit, state}, [type, message, dismissable = true, time_out = true, active = true]) {
+      let index = state.notifications.length + 1;
+      let obj = {index, type, message, dismissable, active};
+      commit('notify', obj);
+      if (time_out) {
+        setTimeout(function () {
+          commit('deactivate_notification', index);
+        }, 3000);
+      }
+
     },
     change_role({commit, state}, role_id) {
       commit('blocking', true);

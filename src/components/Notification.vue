@@ -1,11 +1,19 @@
 <template>
     <div id="v-notifications-container">
-        <div class="alert alert-danger fade show" :class="notification.dismissable && 'alert-dismissable'"role="alert" v-for="notification in notifications">
-            {{notification.message}}
-            <button v-if="notification.dismissable" type="button" class="close ml-2" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+
+        <div v-for="notification in notifications">
+            <transition name="fade">
+                <div v-if="notification.active"
+                     class="alert alert-danger" :class="notification.dismissable && 'alert-dismissable'" role="alert">
+                    {{notification.message}}
+                    <button v-if="notification.dismissable" type="button" class="close ml-2" data-dismiss="alert"
+                            aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </transition>
         </div>
+
     </div>
 </template>
 

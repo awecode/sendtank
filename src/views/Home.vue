@@ -5,13 +5,9 @@
 </template>
 
 <script>
-    import LoginRequired from "../mixins/LoginRequired"
+  import LoginRequired from "../mixins/LoginRequired"
 
-    export default{
-
-      mixins: [LoginRequired],
-      created(){
-        this.$store.dispatch('notify', ['error', 'Failed', false])
-      }
-    }
+  export default {
+    mixins: [LoginRequired],
+  }
 </script>
