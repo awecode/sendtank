@@ -9,7 +9,9 @@
             </div>
         </div>
         <ul>
-            <li v-for="item in this.data">{{ item.name }}</li>
+            <li v-for="item in this.data">
+                <router-link :to="`/campaigns/update/${item.id}/`">{{ item.name }}</router-link>
+            </li>
         </ul>
     </div>
 </template>

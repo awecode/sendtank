@@ -16,4 +16,4 @@ class ListSerializer(serializers.ModelSerializer):
 class CampaignSerializer(serializers.ModelSerializer):
     class Meta:
         model = Campaign
-        fields = ('name', 'list')
+        fields = ('id', 'name', 'list')
