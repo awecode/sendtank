@@ -1,6 +1,13 @@
 <template>
     <div>
-        <h1>Campaigns</h1>
+        <div class="row">
+            <h1 class="col-8">Campaigns</h1>
+            <div class="col-4 text-right">
+                <router-link to="/campaigns/create/">
+                    <a href="javascript:;" class="btn btn-success">Create New Campaign</a>
+                </router-link>
+            </div>
+        </div>
         <ul>
             <li v-for="item in this.data">{{ item.name }}</li>
         </ul>
@@ -13,6 +20,7 @@
 
   export default {
     endpoint: 'campaigns/',
+    collection_name: 'campaigns',
     mixins: [Collection, LoginRequired],
   }
 </script>
