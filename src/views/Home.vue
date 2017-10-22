@@ -11,7 +11,7 @@
 
       mixins: [LoginRequired],
       created(){
-        this.$store.commit('notify', ['error', 'Failed'])
+        this.$store.dispatch('notify', ['error', 'Failed', false])
       }
     }
 </script>

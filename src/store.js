@@ -23,9 +23,8 @@ const store = new Vuex.Store({
     blocking(state, bool) {
       state.blocking = bool;
     },
-
-    notify(state, [type, message]) {
-      state.notifications.push({type, message})
+    notify(state, [type, message, dismissable = true, fade_out = true]) {
+      state.notifications.push({type, message, dismissable, fade_out})
     },
     update_object(state, [object_name, data]) {
       Vue.set(state, object_name, data);
@@ -59,6 +58,9 @@ const store = new Vuex.Store({
 
   },
   actions: {
+    notify({commit}, [type, message, dismissable = true, fade_out = true]) {
+      commit('notify', [type, message, dismissable, fade_out])
+    },
     change_role({commit, state}, role_id) {
       commit('blocking', true);
       global.axios.post('roles/switch/', {id: role_id}).then(data => {
