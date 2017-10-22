@@ -30,14 +30,11 @@
               if (obj) {
                 title = obj.name || obj.title || obj[component.title_field];
               }
-
             }
             crumb.title = title;
             crumb.path = path;
             objs.push(crumb);
           }
-
-
         });
         return objs;
 
