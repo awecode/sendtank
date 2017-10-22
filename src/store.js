@@ -9,6 +9,9 @@ const store = new Vuex.Store({
     'blocking': false,
     'loading': false,
     'roles': global._roles,
+    'user': global._user,
+    'role': role,
+    'notifications': [],
   },
   mutations: {
     loading(state, bool) {
@@ -16,6 +19,12 @@ const store = new Vuex.Store({
     },
     blocking(state, bool) {
       state.blocking = bool;
+    },
+    notify(state, [type, message]) {
+      state.notifications.push({type, message})
+    },
+    update_object(state, [object_name, data]) {
+      Vue.set(state, object_name, data);
     },
     create_collection(state, collection_name) {
       if (!state[collection_name]) {

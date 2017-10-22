@@ -27,8 +27,10 @@
                 <input class="form-control mr-sm-2" type="text" placeholder="Search..." aria-label="Search">
             </form>
             <ul class="navbar-nav">
-                <li class="nav-item active"><a class="nav-link" href="{% url 'account_logout' %}">Sign Out</a></li>
-                <li class="nav-item dropdown">
+                <li class="nav-item" v-if="!user">
+                    <router-link to="/login/"><a class="nav-link">Login</a></router-link>
+                </li>
+                <li class="nav-item dropdown" v-if="user">
                     <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
                         User
@@ -46,9 +48,8 @@
                             </a>
                         </li>
                         <li class="dropdown-divider"></li>
-                        <li class="dropdown-item"><a href="{% url 'account_change_password' %}">Change Password</a></li>
-                        <li class="dropdown-item"><a href="{% url 'socialaccount_connections' %}">Social Accounts</a></li>
-                        <li class="dropdown-item"><a href="{% url 'account_logout' %}">Sign Out</a></li>
+                        <li class="dropdown-item"><a @click.prevent="logout" href="#">Sign Out</a>
+                        </li>
                     </ul>
                 </li>
             </ul>

@@ -5,9 +5,6 @@ import './includes/bootstrap'
 import './styles/main.scss'
 import router from './routes'
 import store from './store'
-import Notification from './plugins/notification'
-
-Vue.use(Notification);
 
 new Vue({
   el: '#app',

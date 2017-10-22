@@ -1,7 +1,7 @@
 <template>
     <div>
         <nav-bar :loading="loading && !blocking"></nav-bar>
-        <notifications></notifications>
+        <notification></notification>
         <div v-if="blocking" class="blocking loader">
             <div class='inner'></div>
         </div>
@@ -13,13 +13,14 @@
 
 <script>
   import NavBar from './components/NavBar.vue'
+  import Notification from './components/Notification.vue'
   import Vue from 'vue'
   import axios from 'axios'
   import {mapState} from 'vuex'
 
   export default {
     name: 'app',
-    components: {NavBar},
+    components: {NavBar, Notification},
 
     created() {
 
