@@ -45,8 +45,8 @@ class Customer(models.Model):
     def name(self):
         st = self.full_name or ''
         if not st and (self.first_name or self.middle_name or self.last_name):
-            return '%s %s %s' % (self.first_name, self.middle_name, self.last_name).strip().replace(' ', ' ')
-        return self.email or self.phone or ''
+            return ('%s %s %s' % (self.first_name or '', self.middle_name or '', self.last_name or '')).strip().replace(' ', ' ')
+        return st or self.email or self.phone or ''
 
     @property
     def short_name(self):
