@@ -4,7 +4,7 @@
             <h1 class="col-8">Lists</h1>
             <div class="col-4 text-right">
                 <router-link to="/lists/create/">
-                    <a class="btn btn-success">Create New List</a>
+                    <a href="javascript:;" class="btn btn-success">Create New List</a>
                 </router-link>
             </div>
         </div>
