@@ -25,13 +25,14 @@
                     <span class="text-danger">{{form.errors.get('last_name')}}</span>
                 </div>
                 <div class="form-group">
-                    <label class="control-label" for="email">E-mail</label>
-                    <input type="text" v-model="fields.email" id="email" class="form-control" name="email"/>
+                    <label class="control-label">E-mail</label>
+                    <!--<input type="text" v-model="fields.email" id="email" class="form-control" name="email"/>-->
+                    <input-tag :tags="fields.email" validate="email"></input-tag>
                     <span class="text-danger">{{form.errors.get('email')}}</span>
                 </div>
                 <div class="form-group">
-                    <label class="control-label" for="phone">Phone</label>
-                    <input type="text" v-model="fields.phone" id="phone" class="form-control" name="phone"/>
+                    <label class="control-label">Phone</label>
+                    <input-tag :tags="fields.phone"></input-tag>
                     <span class="text-danger">{{form.errors.get('phone')}}</span>
                 </div>
             </template>
@@ -42,10 +43,13 @@
 <script>
   import Form from '../mixins/Form'
   import LoginRequired from '../mixins/LoginRequired'
+  import InputTag from 'vue-input-tag'
+
 
   export default {
     endpoint: 'customers/',
     success_url: '/lists/',
     mixins: [Form, LoginRequired],
+    components: {InputTag},
   }
 </script>
