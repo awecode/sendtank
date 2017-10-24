@@ -13,7 +13,11 @@
             {{fields.customers.page_size}} of {{fields.customers.count}}
             <table class="table">
                 <tr v-for="customer in fields.customers.results">
-                    <td>{{customer.name}}</td>
+                    <td>
+                        <router-link :to="`/customers/update/${customer.id}/`">
+                            {{customer.name}}
+                        </router-link>
+                    </td>
                     <td><span class="badge badge-secondary mr-1" v-for="email in customer.email">{{email}}</span></td>
                     <td><span class="badge badge-secondary mr-1" v-for="phone in customer.phone">{{phone}}</span></td>
                 </tr>
