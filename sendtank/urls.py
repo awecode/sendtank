@@ -14,6 +14,7 @@ router = DefaultRouter()
 
 router.register('lists', tank_api.ListViewSet)
 router.register('campaigns', tank_api.CampaignViewSet)
+router.register('customers', tank_api.CustomerViewSet)
 router.register('roles', users_api.RoleViewSet)
 router.register('users', users_api.UserViewSet)
 

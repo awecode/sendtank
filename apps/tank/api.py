@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 
-from .serializers import ListSerializer, CampaignSerializer, ListDetailSerializer
-from .models import List, Campaign
+from .serializers import ListSerializer, CampaignSerializer, ListDetailSerializer, CustomerSerializer
+from .models import List, Campaign, Customer
 
 
 class ListViewSet(viewsets.ModelViewSet):
@@ -18,3 +18,8 @@ class ListViewSet(viewsets.ModelViewSet):
 class CampaignViewSet(viewsets.ModelViewSet):
     queryset = Campaign.objects.all().order_by('-id')
     serializer_class = CampaignSerializer
+
+
+class CustomerViewSet(viewsets.ModelViewSet):
+    queryset = Customer.objects.all().order_by('-id')
+    serializer_class = CustomerSerializer
