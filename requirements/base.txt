@@ -2,3 +2,8 @@ Django
 psycopg2
 djangorestframework
 django-redis
+
+django-excel
+pyexcel-xls
+pyexcel-xlsx
+pyexcel-ods
