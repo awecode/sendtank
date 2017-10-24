@@ -5,7 +5,7 @@ from .models import List, Campaign
 
 
 class ListViewSet(viewsets.ModelViewSet):
-    queryset = List.objects.all()
+    queryset = List.objects.all().order_by('-id')
     serializer_class = ListSerializer
     detail_serializer_class = ListDetailSerializer
 
@@ -16,5 +16,5 @@ class ListViewSet(viewsets.ModelViewSet):
 
 
 class CampaignViewSet(viewsets.ModelViewSet):
-    queryset = Campaign.objects.all()
+    queryset = Campaign.objects.all().order_by('-id')
     serializer_class = CampaignSerializer
