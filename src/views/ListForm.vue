@@ -11,6 +11,7 @@
         <div v-if="fields.customers">
             <h2>Users</h2>
             {{fields.customers.page_size}} of {{fields.customers.count}}
+            <a :href="`/lists/${fields.id}/export/customers/`">Export XLS</a>
             <table class="table">
                 <tr v-for="customer in fields.customers.results">
                     <td>

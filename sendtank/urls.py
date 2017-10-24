@@ -8,7 +8,9 @@ from rest_framework.routers import DefaultRouter
 from apps.users import views
 
 from apps.tank import api as tank_api
+
 from apps.users import api as users_api
+from apps.tank import views as tank_views
 
 router = DefaultRouter()
 
@@ -21,6 +23,7 @@ router.register('users', users_api.UserViewSet)
 urlpatterns = [
     url(r'^stadmin/', admin.site.urls),
     url(r'^api/v1/', include(router.urls, namespace='api')),
+    url(r'^lists/(?P<list_pk>[0-9]+)/export/customers/$', tank_views.export_customers, name='export-customers'),
     url(r'^.*$', views.index, name='home'),
 ]
 
