@@ -8,10 +8,12 @@
                 <span class="text-danger">{{form.errors.get('name')}}</span>
             </template>
         </vue-form>
-        <div v-if="fields.customers">
+        <div v-if="fields.customers" class="card p-2">
             <h2>Users</h2>
-            {{fields.customers.page_size}} of {{fields.customers.count}}
-            <a :href="`/lists/${fields.id}/export/customers/`">Export XLS</a>
+            <div>
+                <div class="badge badge-secondary"><h5 class="mb-1">{{fields.customers.page_size}} of {{fields.customers.count}}</h5></div>
+                <a class="btn btn-primary btn-sm" :href="`/lists/${fields.id}/export/customers/`">Export XLS</a>
+            </div>
             <table class="table">
                 <tr v-for="customer in fields.customers.results">
                     <td>

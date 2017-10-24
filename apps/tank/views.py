@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render,  get_object_or_404
 from django import forms
 import django_excel as excel
 from pyexcel import get_sheet
@@ -9,8 +9,6 @@ from .models import Customer, List
 class UploadFileForm(forms.Form):
     file = forms.FileField()
 
-
-# Create your views here.
 def upload(request):
     if request.method == "POST":
         form = UploadFileForm(request.POST, request.FILES)
