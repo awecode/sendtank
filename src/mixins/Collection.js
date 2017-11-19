@@ -1,4 +1,7 @@
+import Pagination from '../components/Pagination.vue'
+
 export default {
+  components: {Pagination},
   created() {
     let endpoint = this.$options.endpoint;
     if (this.$store.state[this.$options.collection_name]) {
