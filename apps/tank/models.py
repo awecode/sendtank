@@ -7,7 +7,7 @@ from apps.users.models import Company
 
 class List(models.Model):
     name = models.CharField(max_length=255)
-    company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='lists')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -17,7 +17,7 @@ class List(models.Model):
 
 class Campaign(models.Model):
     name = models.CharField(max_length=255)
-    list = models.ForeignKey(List, on_delete=models.CASCADE)
+    list = models.ForeignKey(List, on_delete=models.CASCADE, related_name='campaigns')
     channels = ArrayField(models.CharField(choices=CHANNELS, max_length=255), blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -37,6 +37,8 @@ class Customer(models.Model):
     last_name = models.CharField(max_length=255, blank=True, null=True)
     email = ArrayField(models.EmailField(blank=True, null=True), blank=True, null=True)
     phone = ArrayField(models.CharField(max_length=100, blank=True, null=True), blank=True, null=True)
+
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='customers')
     lists = models.ManyToManyField(List, related_name='customers', through='ListCustomer')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -46,7 +48,7 @@ class Customer(models.Model):
         st = self.full_name or ''
         if not st and (self.first_name or self.middle_name or self.last_name):
             return ('%s %s %s' % (self.first_name or '', self.middle_name or '', self.last_name or '')).strip().replace(' ', ' ')
-        return st or self.email or self.phone or ''
+        return st or str(self.email) or str(self.phone) or ''
 
     @property
     def short_name(self):
@@ -64,3 +66,6 @@ class ListCustomer(models.Model):
 
     def __str__(self):
         return '%s  - %s' % (self.list, self.customer)
+
+    class Meta:
+        auto_created = True

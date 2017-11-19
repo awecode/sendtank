@@ -1,3 +1,4 @@
+from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.shortcuts import render, get_object_or_404
 from django import forms
@@ -31,15 +32,46 @@ def upload(request):
         })
 
 
-def import_customers(request):
-    # todo check all ids are for request.company
+def prepare_array_field(val):
+    if type(val) == str:
+        return [item.strip() for item in val.split(',')]
+    return [val]
+
+
+def import_customers(request, list_pk):
     if request.method == "POST":
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
-            request.FILES['file'].save_to_database(
-                name_columns_by_row=2,
-                model=Customer,
-                mapdict=['id', 'full_name', 'first_name', 'middle_name', 'last_name', 'email', 'phone'])
+            data = request.FILES['file'].get_array()[1:]
+            mapdict = ['id', 'full_name', 'first_name', 'middle_name', 'last_name', 'email', 'phone']
+            new_customers = []
+            customer_ids = []
+            # existing_ids_in_import = []
+            for datum in data:
+                kgs = {}
+                for index, val in enumerate(datum):
+                    attr = mapdict[index]
+                    if attr in ['email', 'phone']:
+                        val = prepare_array_field(val)
+                    kgs[attr] = val
+                kgs['company_id'] = request.company.id
+                customer = Customer(**kgs)
+                if kgs.get('id'):
+                    # existing_ids_in_import.append(kgs.get('id'))
+                    cnt = Customer.objects.filter(company=request.company, id=kgs.get('id')).update(**kgs)
+                    if not cnt:
+                        new_customers.append(customer)
+                    customer_ids.append(kgs.get('id'))
+                else:
+                    new_customers.append(customer)
+            # id of existing customer of another company in import file would give error
+            try:
+                res = Customer.objects.bulk_create(new_customers)
+                [customer_ids.append(cus.id) for cus in res]
+            except IntegrityError:
+                return HttpResponseBadRequest("ID mismatch.")
+            list = get_object_or_404(List, pk=list_pk)
+            list.customers.add(*customer_ids)
             return HttpResponse("OK")
         else:
             return HttpResponseBadRequest()

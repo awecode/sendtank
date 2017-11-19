@@ -48,6 +48,10 @@
       });
       global.axios = axios;
 
+      global.axios_origin = axios.create({
+        baseURL: ''
+      });
+
       global.clone = (obj => {
         return JSON.parse(JSON.stringify(obj))
       });
