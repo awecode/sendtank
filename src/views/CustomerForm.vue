@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1 v-if="fields.id">Update {{fields.name}}</h1>
-        <h1 v-else>Create New Customer</h1>
+        <h1 v-else-if="!loading">Create New Customer</h1>
         <vue-form :fields="fields" :action="endpoint()">
             <template slot-scope="form">
                 <div class="form-group">
