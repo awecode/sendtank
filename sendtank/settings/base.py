@@ -85,6 +85,8 @@ SESSION_CACHE_ALIAS = "default"
 AUTH_USER_MODEL = 'users.User'
 
 REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'sendtank.libs.pagination.PageNumberPagination',
+    'PAGE_SIZE': 50,
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
     ),

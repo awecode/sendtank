@@ -48,7 +48,7 @@
 
   export default {
     endpoint: 'customers/',
-    success_url: '/lists/',
+    success_url: '/customers/',
     mixins: [Form, LoginRequired],
     components: {InputTag},
   }

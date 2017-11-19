@@ -12,6 +12,9 @@
                 <li class="nav-item">
                     <router-link to="/campaigns/"><a class="nav-link">Campaigns</a></router-link>
                 </li>
+                <li class="nav-item">
+                    <router-link to="/customers/"><a class="nav-link">Customers</a></router-link>
+                </li>
 
             </ul>
             <div class="loader mx-auto" v-if="loading">
