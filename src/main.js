@@ -5,6 +5,9 @@ import './includes/bootstrap'
 import './styles/main.scss'
 import router from './routes'
 import store from './store'
+import Notification from './mixins/Notification'
+
+Vue.mixin(Notification);
 
 new Vue({
   el: '#app',

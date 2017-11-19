@@ -33,7 +33,7 @@
     mounted() {
       if (this.$store.state.user) {
         this.$router.push({path: this.$options.success_url});
-        this.$notify.info('You are already logged in.');
+        this.$info('You are already logged in.');
       }
     }
   }

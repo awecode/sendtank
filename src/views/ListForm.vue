@@ -82,11 +82,11 @@
         // });
 
         axios_origin.post(`/lists/${this.fields.id}/import/customers/`, data).then(response => {
-          console.log(response);
-          resolve(response.data);
+          this.$success('Saved!');
+          $("#customers-import-modal").modal('hide');
         })
           .catch(error => {
-            console.log(error);
+            this.$error('Import failed!');
           });
       }
     }

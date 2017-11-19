@@ -1,6 +1,6 @@
 from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseBadRequest
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404
 from django import forms
 import django_excel as excel
 from pyexcel import get_sheet
@@ -10,26 +10,6 @@ from .models import Customer, List
 
 class UploadFileForm(forms.Form):
     file = forms.FileField()
-
-
-def upload(request):
-    if request.method == "POST":
-        form = UploadFileForm(request.POST, request.FILES)
-        if form.is_valid():
-            filehandle = request.FILES['file']
-            return excel.make_response(filehandle.get_sheet(), "csv",
-                                       file_name="download")
-    else:
-        form = UploadFileForm()
-    return render(
-        request,
-        'upload_form.html',
-        {
-            'form': form,
-            'title': 'Excel file upload and download example',
-            'header': ('Please choose any excel file ' +
-                       'from your cloned repository:')
-        })
 
 
 def prepare_array_field(val):

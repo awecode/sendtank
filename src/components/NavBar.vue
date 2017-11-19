@@ -65,7 +65,7 @@
       logout() {
         this.$store.dispatch('logout').then(() => {
           this.$router.push('/login');
-          this.$notify.success('Logged out!');
+          this.$success('Logged out!');
         });
       },
       ...mapActions([
