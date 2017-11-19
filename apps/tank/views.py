@@ -43,6 +43,7 @@ def import_customers(request, list_pk):
                         new_customers.append(customer)
                     customer_ids.append(kgs.get('id'))
                 else:
+                    customer.id = None
                     new_customers.append(customer)
             # id of existing customer of another company in import file would give error
             try:
