@@ -20,7 +20,7 @@ const store = new Vuex.Store({
     get_object: (state, getters) => (collection_name, key, key_name = 'id') => {
       let collection = state[collection_name];
       if (collection) {
-        return state[collection_name].find(obj => obj[key_name] == key);
+        return state[collection_name].results.find(obj => obj[key_name] == key);
       }
     }
   },
@@ -52,8 +52,8 @@ const store = new Vuex.Store({
       let collection = state[collection_name];
       if (collection && data.id) {
         // noinspection EqualityComparisonWithCoercionJS
-        let index = collection.findIndex(x => x.id == data.id);
-        collection[index] = data;
+        let index = collection.results.findIndex(x => x.id == data.id);
+        collection.results[index] = data;
       }
     },
     update_roles(state, roles) {
