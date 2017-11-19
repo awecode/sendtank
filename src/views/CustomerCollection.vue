@@ -8,8 +8,8 @@
                 </router-link>
             </div>
         </div>
-        <ul>
-            <li v-for="item in this.data">
+        <ul v-if="this.data">
+            <li v-for="item in this.data.results">
                 <router-link :to="`/customers/update/${item.id}/`">{{ item.name }}</router-link>
             </li>
         </ul>
