@@ -45,7 +45,8 @@ class UserViewSet(viewsets.GenericViewSet):
         user = authenticate(username=data.get('email'), password=data.get('password'))
         if user:
             login(request, user)
-            return Response(user.data)
+            all_roles = user.all_roles
+            return Response({'user': user.data, 'roles': RoleSerializer(all_roles, many=True, active=all_roles[0]).data})
         else:
             raise ValidationError({'__form__': ['Invalid email or password']})
 

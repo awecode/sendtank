@@ -26,7 +26,7 @@ class RoleMiddleware(object):
 
         role = None
         if request.user.is_authenticated:
-            roles = list(Role.objects.filter(user=request.user).select_related('company'))
+            roles = request.user.all_roles
             if request.session.get('role'):
                 role = next((role for role in roles if role.id == request.session.get('role')), None)
             if not role and roles:

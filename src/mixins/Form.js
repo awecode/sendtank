@@ -38,11 +38,10 @@ export default {
   },
   mounted() {
     this.$on('success', (data) => {
-      if (this.$options.collection_name) {
+      if (this.on_success) {
+        this.on_success(data);
+      } else if (this.$options.collection_name) {
         this.$store.commit('update_collection_item', [this.$options.collection_name, data]);
-      }
-      if (this.$options.object_name) {
-        this.$store.commit('update_object', [this.$options.object_name, data]);
       }
       if (this.$options.success_url) {
         this.$router.push({path: this.$options.success_url});

@@ -56,6 +56,10 @@ class User(AbstractBaseUser):
         return self.is_superuser
 
     @property
+    def all_roles(self):
+        return list(Role.objects.filter(user=self).select_related('company'))
+
+    @property
     def data(self):
         from .serializers import UserSerializer
         return UserSerializer(self).data

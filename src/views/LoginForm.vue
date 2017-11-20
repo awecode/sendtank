@@ -27,11 +27,15 @@
   export default {
     mixins: [Form],
     endpoint: 'users/login/',
-    object_name: 'user',
     success_url: '/',
     success_message: 'Logged In',
+    methods: {
+      on_success(data) {
+        this.$store.commit('update_user_data', data);
+      }
+    },
     mounted() {
-      if (this.$store.state.user) {
+      if (this.$store.state.app.user) {
         this.$router.push({path: this.$options.success_url});
         this.$info('You are already logged in.');
       }

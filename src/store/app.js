@@ -1,6 +1,6 @@
-let roles = global._roles || null;
+let roles = global._roles;
 let role = roles.find(x => x.active === true);
-let user = global._user || null;
+let user = global._user;
 
 export default {
   state: {
@@ -24,6 +24,13 @@ export default {
     deactivate_notification(state, index) {
       state.notifications[index - 1].active = false;
     },
+    update_user_data(state, user_data) {
+      let all_roles = user_data.roles;
+      let active_role = all_roles.find(x => x.active === true);
+      state.user = user_data.user;
+      state.roles = all_roles;
+      state.role = active_role;
+    },
     update_roles(state, roles) {
       state.roles = roles;
     },
@@ -34,6 +41,7 @@ export default {
     clear_user(state) {
       state.user = null;
     },
+
 
   },
   actions: {

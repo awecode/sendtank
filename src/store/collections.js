@@ -11,9 +11,6 @@ export default {
     }
   },
   mutations: {
-    update_object(state, [object_name, data]) {
-      Vue.set(state, object_name, data);
-    },
     create_collection(state, collection_name) {
       if (!state[collection_name]) {
         Vue.set(state, collection_name, []);
