@@ -8,10 +8,10 @@
                     <input type="text" v-model="fields.name" id="name" class="form-control" name="name"/>
                     <span class="text-danger">{{form.errors.get('name')}}</span>
                 </div>
-                <div class="form-group">
+                <div class="form-group" v-if="lists">
                     <select v-model="fields.list">
                         <option disabled value="">Please select a list for the campaign</option>
-                        <option v-for="option in lists" :value="option.id">
+                        <option v-for="option in lists.results" :value="option.id">
                             {{ option.name }}
                         </option>
                     </select>
