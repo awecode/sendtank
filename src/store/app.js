@@ -1,28 +1,15 @@
-import Vuex from 'vuex'
-import Vue from 'vue'
+let roles = global._roles || [];
+let role = roles.find(x => x.active === true);
+let user = global._user || {};
 
-Vue.use(Vuex);
-
-let role = global._roles.find(x => x.active === true);
-
-// noinspection JSUnresolvedVariable
-const store = new Vuex.Store({
+export default {
   state: {
     'blocking': false,
     'loading': false,
-    'roles': global._roles,
-    'user': global._user,
+    'roles': roles,
+    'user': user,
     'role': role,
     'notifications': [],
-
-  },
-  getters: {
-    get_object: (state, getters) => (collection_name, key, key_name = 'id') => {
-      let collection = state[collection_name];
-      if (collection) {
-        return state[collection_name].results.find(obj => obj[key_name] == key);
-      }
-    }
   },
   mutations: {
     loading(state, bool) {
@@ -36,25 +23,6 @@ const store = new Vuex.Store({
     },
     deactivate_notification(state, index) {
       state.notifications[index - 1].active = false;
-    },
-    update_object(state, [object_name, data]) {
-      Vue.set(state, object_name, data);
-    },
-    create_collection(state, collection_name) {
-      if (!state[collection_name]) {
-        Vue.set(state, collection_name, []);
-      }
-    },
-    update_collection(state, [collection_name, data]) {
-      Vue.set(state, collection_name, data);
-    },
-    update_collection_item(state, [collection_name, data]) {
-      let collection = state[collection_name];
-      if (collection && data.id) {
-        // noinspection EqualityComparisonWithCoercionJS
-        let index = collection.results.findIndex(x => x.id == data.id);
-        collection.results[index] = data;
-      }
     },
     update_roles(state, roles) {
       state.roles = roles;
@@ -106,7 +74,4 @@ const store = new Vuex.Store({
       });
     }
   },
-  strict: process.env.NODE_ENV !== 'production'
-});
-
-export default store
+};

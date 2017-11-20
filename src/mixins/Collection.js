@@ -17,7 +17,7 @@ export default {
   },
   computed: {
     data() {
-      return this.$store.state[this.$options.collection_name];
+      return this.$store.state.collections[this.$options.collection_name];
     }
   }
 }

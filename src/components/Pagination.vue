@@ -1,17 +1,17 @@
 <template>
-    <div id="v-pagination-container" v-if="page_data">
-        <span class="badge badge-secondary">Showing {{ page_data.results.length }} of {{page_data.count}}</span>
-        <span class="badge badge-secondary">Page {{page_data.page}} of {{page_data.pages}}</span>
+    <div id="v-pagination-container" v-if="pagination">
+        <span class="badge badge-secondary">Showing {{ pagination.size }} of {{pagination.count}}</span>
+        <span class="badge badge-secondary">Page {{pagination.page}} of {{pagination.pages}}</span>
 
         <nav>
             <ul class="pagination">
-                <li class="page-item" v-if="page_data.previous">
+                <li class="page-item" v-if="pagination.previous">
                     <a class="page-link" href="#" tabindex="-1">Previous</a>
                 </li>
-                <li class="page-item" v-for="pg in page_links" :class="{active: pg==page_data.page}">
+                <li class="page-item" v-for="pg in page_links" :class="{active: pg==pagination.page}">
                     <a class="page-link" href="#">{{pg}}</a>
                 </li>
-                <li class="page-item" v-if="page_data.next">
+                <li class="page-item" v-if="pagination.next">
                     <a class="page-link" href="#">Next</a>
                 </li>
             </ul>
@@ -24,11 +24,11 @@
   import {mapState, mapActions} from 'vuex'
 
   export default {
-    props: ['page_data'],
+    props: ['pagination'],
     computed: {
       page_links: function () {
-        let c = this.page_data.page;
-        let m = this.page_data.pages;
+        let c = this.pagination.page;
+        let m = this.pagination.pages;
 
         let delta = 2,
           range = [],

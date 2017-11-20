@@ -1,6 +1,5 @@
 <template>
     <div id="v-notifications-container">
-
         <div v-for="notification in notifications">
             <transition name="fade">
                 <div v-if="notification.active" role="alert"
@@ -21,8 +20,8 @@
   import {mapState, mapActions} from 'vuex'
 
   export default {
-    computed: mapState([
-      'notifications',
-    ]),
+    computed: mapState({
+      notifications: state => state.app.notifications
+    }),
   }
 </script>
