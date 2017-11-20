@@ -17,6 +17,11 @@ export default {
       return endpoint
     },
   },
+  computed: {
+    success_message() {
+      return this.$options.success_message || 'Saved';
+    }
+  },
   created() {
     if (this.$route.params.pk) {
       global.axios.get(this.endpoint()).then(({data}) => {
@@ -42,7 +47,7 @@ export default {
       if (this.$options.success_url) {
         this.$router.push({path: this.$options.success_url});
       }
-      this.$store.dispatch('notify', ['success', 'Saved!']);
+      this.$store.dispatch('notify', ['success', this.success_message]);
     });
   },
 }

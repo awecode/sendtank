@@ -1,6 +1,6 @@
-let roles = global._roles || [];
+let roles = global._roles || null;
 let role = roles.find(x => x.active === true);
-let user = global._user || {};
+let user = global._user || null;
 
 export default {
   state: {

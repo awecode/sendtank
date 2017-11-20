@@ -59,9 +59,10 @@
       global.Vue = Vue;
 
     },
-    computed: mapState([
-      'loading', 'blocking'
-    ])
+    computed: mapState({
+      loading: state => state.app.loading,
+      blocking: state => state.app.blocking,
+    }),
   }
 
 </script>

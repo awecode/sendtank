@@ -61,9 +61,11 @@
 
   export default {
     props: ['loading'],
-    computed: mapState([
-      'roles', 'user', 'role'
-    ]),
+    computed: mapState({
+      user: state => state.app.user,
+      role: state => state.app.role,
+      roles: state => state.app.roles,
+    }),
     methods: {
       logout() {
         this.$store.dispatch('logout').then(() => {
