@@ -11,7 +11,7 @@
                 <div class="form-group" v-if="lists">
                     <select v-model="fields.list">
                         <option disabled value="">Please select a list for the campaign</option>
-                        <option v-for="option in lists.results" :value="option.id">
+                        <option v-for="option in lists.objects" :value="option.id">
                             {{ option.name }}
                         </option>
                     </select>
@@ -34,8 +34,11 @@
     success_url: '/campaigns/',
     collection_name: 'campaigns',
     dependencies: [ListForm],
-    computed: mapState([
-      'lists',
-    ]),
+//    computed: mapState([
+//      'lists',
+//    ]),
+    computed: mapState({
+      lists: state => state.collections.lists,
+    })
   }
 </script>
