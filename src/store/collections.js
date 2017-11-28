@@ -36,14 +36,31 @@ export default {
       // Update current page ids
       collection.pages[page_no] = ids;
     // Update/add to objects list
+      data.results.forEach(obj=>{
+        console.log(obj);
+        let index = collection.objects.findIndex(x => x.id == obj.id);
+        if (index===-1){
+          collection.objects.push(obj);
+        }else{
+          collection.objects[index] = obj;
+        }
+      });
     },
     update_collection_item(state, [collection_name, data]) {
       let collection = state[collection_name];
       if (collection && data.id) {
         // noinspection EqualityComparisonWithCoercionJS
-        let index = collection.results.findIndex(x => x.id == data.id);
-        collection.results[index] = data;
+        let index = collection.objects.findIndex(x => x.id == data.id);
+        if (index===-1){
+          collection.objects.push(data);
+        }else{
+          collection.objects[index] = data;
+        }
       }
+    },
+    add_collection_item(state, [collection_name, data]) {
+      let collection = state[collection_name];
+      collection.objects.push(data);
     },
   },
   actions: {},

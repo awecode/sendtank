@@ -20,6 +20,9 @@ export default {
   computed: {
     success_message() {
       return this.$options.success_message || 'Saved';
+    },
+    pk(){
+      return this.$route.params.pk
     }
   },
   created() {
@@ -40,8 +43,10 @@ export default {
     this.$on('success', (data) => {
       if (this.on_success) {
         this.on_success(data);
-      } else if (this.$options.collection_name) {
+      } else if (this.pk && this.$options.collection_name) {
         this.$store.commit('update_collection_item', [this.$options.collection_name, data]);
+      }else if (this.$options.collection_name) {
+        this.$store.commit('add_collection_item', [this.$options.collection_name, data]);
       }
       if (this.$options.success_url) {
         this.$router.push({path: this.$options.success_url});
