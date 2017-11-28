@@ -1,5 +1,5 @@
 <template>
-    <div id="v-pagination-container" v-if="pagination">
+    <div id="v-pagination-container" v-if="pagination && pagination.count">
         <span class="badge badge-secondary">Showing {{ pagination.size }} of {{pagination.count}}</span>
         <span class="badge badge-secondary">Page {{pagination.page}} of {{pagination.pages}}</span>
 

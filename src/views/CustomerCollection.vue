@@ -13,7 +13,7 @@
                 <router-link :to="`/customers/update/${item.id}/`">{{ item.name }}</router-link>
             </li>
         </ul>
-        <Pagination :pagination="this.data.pagination"/>
+        <Pagination :pagination="this.data.pagination" v-if="this.data"/>
     </div>
 </template>
 
