@@ -1,9 +1,10 @@
 <template>
     <div id="v-pagination-container" v-if="pagination && pagination.count">
-        <span class="badge badge-secondary">Showing {{ pagination.size }} of {{pagination.count}}</span>
+        <span class="badge badge-secondary">Showing {{ pagination.size > pagination.count ? pagination.count : pagination.size
+            }} of {{pagination.count}}</span>
         <span class="badge badge-secondary">Page {{pagination.page}} of {{pagination.pages}}</span>
 
-        <nav>
+        <nav v-if="pagination.count > pagination.size">
             <ul class="pagination">
                 <li class="page-item" v-if="pagination.previous">
                     <a class="page-link" href="#" tabindex="-1">Previous</a>
@@ -26,7 +27,10 @@
   export default {
     props: ['pagination'],
     computed: {
-      page_links: function () {
+      current_count() {
+        i
+      },
+      page_links() {
         let c = this.pagination.page;
         let m = this.pagination.pages;
 

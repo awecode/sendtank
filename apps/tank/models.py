@@ -19,6 +19,7 @@ class Campaign(models.Model):
     name = models.CharField(max_length=255)
     list = models.ForeignKey(List, on_delete=models.CASCADE, related_name='campaigns')
     channels = ArrayField(models.CharField(choices=CHANNELS, max_length=255), blank=True, null=True)
+    template = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

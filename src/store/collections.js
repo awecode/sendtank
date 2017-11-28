@@ -37,7 +37,6 @@ export default {
       collection.pages[page_no] = ids;
       // Update/add to objects list
       data.results.forEach(obj => {
-        console.log(obj);
         let index = collection.objects.findIndex(x => x.id == obj.id);
         if (index === -1) {
           collection.objects.push(obj);

@@ -9,7 +9,7 @@ class Channel(object):
     def get(name):
         return dict(CHANNELS).get(name)
 
-    def __init(self):
+    def __init__(self):
         if not self.name:
             raise NotImplemented('Channel should have a name')
 

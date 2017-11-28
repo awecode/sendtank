@@ -9,7 +9,7 @@
             </div>
         </div>
         <ul v-if="this.data">
-            <li v-for="item in this.data.results">
+            <li v-for="item in this.data.objects">
                 <router-link :to="`/customers/update/${item.id}/`">{{ item.name }}</router-link>
             </li>
         </ul>
