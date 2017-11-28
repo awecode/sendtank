@@ -1,7 +1,7 @@
 from django.contrib.postgres.fields import ArrayField
 from django.db import models
 
-from apps.send.models import CHANNELS
+from apps.send.models import CHANNELS, Channel
 from apps.users.models import Company
 
 
@@ -18,7 +18,7 @@ class List(models.Model):
 class Campaign(models.Model):
     name = models.CharField(max_length=255)
     list = models.ForeignKey(List, on_delete=models.CASCADE, related_name='campaigns')
-    channels = ArrayField(models.CharField(choices=CHANNELS, max_length=255), blank=True, null=True)
+    channels = ArrayField(models.CharField(choices=CHANNELS, max_length=255), blank=True, null=True, default=['HousedSMS'])
     template = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -27,8 +27,19 @@ class Campaign(models.Model):
     def company(self):
         return self.list.company
 
+    def trigger(self):
+        for channel_name in self.channels:
+            channel = Channel.get(channel_name)
+            channel.trigger(self)
+
     def __str__(self):
         return self.name
+
+
+# class Trigger(models.Model):
+#     campaign = models.ForeignKey(Campaign, related_name='triggers')
+#     type = models.CharField(default='Manual')
+#     created_at = models.DateTimeField(auto_now_add=True)
 
 
 class Customer(models.Model):

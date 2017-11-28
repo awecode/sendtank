@@ -16,6 +16,11 @@ class Channel(object):
 
 class HousedSMS(Channel):
     name = 'HousedSMS'
+    
+    def trigger(self, campaign):
+        pass
+        # send fcm notification
+        
 
 
 CHANNELS = (
