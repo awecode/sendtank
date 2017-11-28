@@ -21,10 +21,16 @@ class Channel(object):
 class HousedSMS(Channel):
     name = 'HousedSMS'
 
-    def trigger(self, campaign):
-        import ipdb
-        ipdb.set_trace()
-        # send fcm notification
+    @classmethod
+    def trigger(klass, campaign):
+        # todo do this in company model
+        roles = campaign.list.company.roles.all()
+        # users = []
+        for role in roles:
+            role.user.send_push({'campaign': campaign.id})
+            # users.append(role.user)
+            # users = set(users)
+            # send fcm notification
 
 
 CHANNELS = (
