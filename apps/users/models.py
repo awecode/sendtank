@@ -64,6 +64,10 @@ class User(AbstractBaseUser):
         from .serializers import UserSerializer
         return UserSerializer(self).data
 
+    def send_push(self, msg):
+        from apps.send.models import UserDevice
+        return UserDevice.objects.filter(user=self, is_active=True)
+
     def __str__(self):
         return self.full_name
 

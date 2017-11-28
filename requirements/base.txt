@@ -2,6 +2,7 @@ Django
 psycopg2
 djangorestframework
 django-redis
+django-fcm
 
 django-excel
 pyexcel-xls
