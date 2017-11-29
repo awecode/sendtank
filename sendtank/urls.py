@@ -2,6 +2,7 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from fcm.views import DeviceViewSet
 
 from rest_framework.routers import DefaultRouter
 
@@ -20,11 +21,12 @@ router.register('customers', tank_api.CustomerViewSet)
 router.register('roles', users_api.RoleViewSet)
 router.register('users', users_api.UserViewSet)
 
+router.register(r'devices', DeviceViewSet)
+
 urlpatterns = [
     url(r'^stadmin/', admin.site.urls),
     url(r'^api/v1/auth/login/', users_api.CustomObtainAuth.as_view()),
     url(r'^api/v1/', include(router.urls, namespace='api')),
-    url(r'', include('fcm.urls')),
 
     url(r'^lists/(?P<list_pk>[0-9]+)/export/customers/$', tank_views.export_customers, name='export-customers'),
     url(r'^lists/(?P<list_pk>[0-9]+)/import/customers/$', tank_views.import_customers, name='import-customers'),
