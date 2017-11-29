@@ -1,4 +1,5 @@
 from django.contrib.auth import authenticate, login, logout
+from rest_framework.authentication import TokenAuthentication
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from rest_framework.decorators import list_route
 from rest_framework.exceptions import ValidationError
@@ -7,6 +8,7 @@ from rest_framework import viewsets
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 
+from apps.send.models import UserDevice
 from .models import Role, User
 from .serializers import RoleSerializer, UserSerializer
 
@@ -37,6 +39,11 @@ class UserViewSet(viewsets.GenericViewSet):
     permission_classes = ()
     authentication_classes = ()
 
+    def get_authenticators(self):
+        if self.action_map.get('post') == 'reg_id':
+            return [TokenAuthentication()]
+        return super().get_authenticators()
+
     @list_route(methods=['POST'])
     def login(self, request):
         data = request.data
@@ -52,6 +59,25 @@ class UserViewSet(viewsets.GenericViewSet):
             return Response({'user': user.data, 'roles': RoleSerializer(all_roles, many=True, active=all_roles[0]).data})
         else:
             raise ValidationError({'__form__': ['Invalid email or password']})
+
+    @list_route(methods=['POST'])
+    def reg_id(self, request):
+        user = self.request.user
+        if user.is_authenticated:
+            reg_id = request.data.get('reg_id')
+            dev_id = request.data.get('dev_id')
+            name = request.data.get('name')
+            if not reg_id:
+                return Response({'detail': 'reg_id is required.'}, status=400)
+            dev, __ = UserDevice.objects.get_or_create(reg_id=reg_id, dev_id=dev_id,
+                                                       defaults={'user': user, 'name': name, 'is_active': True})
+            if not dev.is_active:
+                dev.is_active = True
+                dev.save()
+
+            return Response({'status': 'success'})
+        else:
+            return Response({'status': 'error', 'detail': 'Not authenticated.'}, 401)
 
     @list_route(methods=['POST'])
     def logout(self, request):
