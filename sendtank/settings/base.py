@@ -99,3 +99,5 @@ REST_FRAMEWORK = {
 
 FILE_UPLOAD_HANDLERS = ("django_excel.ExcelMemoryFileUploadHandler",
                         "django_excel.TemporaryExcelFileUploadHandler")
+
+FCM_APIKEY = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
