@@ -67,7 +67,9 @@ class User(AbstractBaseUser):
     def send_push(self, msg):
         from apps.send.models import UserDevice
         devices = UserDevice.objects.filter(user=self, is_active=True)
-        devices.send_message(msg)
+        print(devices)
+        reply = devices.send_message(msg)
+        print(reply)
 
     def __str__(self):
         return self.full_name

@@ -28,8 +28,10 @@ class Campaign(models.Model):
         return self.list.company
 
     def trigger(self):
+        print('triggered campaign')
         for channel_name in self.channels:
             channel = Channel.get(channel_name)
+            print(channel_name)
             channel.trigger(self)
 
     def __str__(self):
