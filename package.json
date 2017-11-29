@@ -8,7 +8,9 @@
   "license": "MIT",
   "scripts": {
     "watch": "NODE_ENV=development webpack --watch --progress --hide-modules",
-    "build": "NODE_ENV==production webpack -p --hide-modules"
+    "build": "NODE_ENV==production webpack -p --hide-modules",
+    "clean_remote": "ssh sendtank@nepalbiogas.org -p 22222 'rm -rf /home/sendtank/static/dist/*'",
+    "push": "scp -P 22222 -rp static/dist_dev/* sendtank@nepalbiogas.org://home/sendtank/static/dist"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

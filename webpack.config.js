@@ -15,7 +15,7 @@ output = {
 
 if (process.env.NODE_ENV === 'production') {
   output['path'] = prod_path;
-  output['publicPath'] = 'https://cdn.awecode.com/sendtank/dist/';
+  output['publicPath'] = '/static/dist/';
 }
 
 let commonsPlugin = new webpack.optimize.CommonsChunkPlugin({name: 'common', filename: 'js/common.js'});
