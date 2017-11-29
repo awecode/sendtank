@@ -24,6 +24,8 @@ urlpatterns = [
     url(r'^stadmin/', admin.site.urls),
     url(r'^api/v1/auth/login/', users_api.CustomObtainAuth.as_view()),
     url(r'^api/v1/', include(router.urls, namespace='api')),
+    url(r'', include('fcm.urls')),
+
     url(r'^lists/(?P<list_pk>[0-9]+)/export/customers/$', tank_views.export_customers, name='export-customers'),
     url(r'^lists/(?P<list_pk>[0-9]+)/import/customers/$', tank_views.import_customers, name='import-customers'),
     url(r'^.*$', views.index, name='home'),
