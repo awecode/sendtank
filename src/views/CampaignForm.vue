@@ -27,6 +27,9 @@
                 </div>
             </template>
         </vue-form>
+        <div class="float-right" v-if="fields.id">
+            <button class="btn btn-success" @click="trigger">Trigger</button>
+        </div>
     </div>
 </template>
 
@@ -44,6 +47,14 @@
     dependencies: [ListForm],
     computed: mapState({
       lists: state => state.collections.lists,
-    })
+    }),
+    methods: {
+      trigger() {
+        let trigger_ep = '/campaigns/' + (this.fields.id) + '/trigger/';
+        global.axios.get(trigger_ep).then(({data}) => {
+          this.$success('Triggered');
+        });
+      }
+    }
   }
 </script>
